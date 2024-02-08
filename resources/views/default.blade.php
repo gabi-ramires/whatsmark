@@ -6,15 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>WhatsMark</title>
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
 </head>
 <body>
     <header>
-    <h1>WhatsMark</h1>
+        <div class='logo'>
+            <img src="{{ asset('img/fox.png') }}" width="100px">
+            <a href='/'><img src="{{ asset('img/whats.png') }}" width="220px"></a>
+            
+        </div>
         <nav>
             <ul>
                 <li><a href="/">Página Inicial</a></li>
                 <li><a href="/sobre">Sobre</a></li>
                 <li><a href="/whatsmark">WhatsMark</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>

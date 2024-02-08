@@ -26,5 +26,9 @@ Route::get('/whatsmark', function () {
     return view('whatsmark');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
 
 

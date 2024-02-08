@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.tela-login {
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-image: url("../img/bg-login.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+.tela-login .login {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  border: 1px solid gray;
+  background-color: transparent;
+  align-self: center;
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+.tela-login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tela-login form h2 {
+  padding-top: 20px;
+  color: #EF780D;
+}
+.tela-login form #submit:hover {
+  cursor: pointer;
+  background-color: #EF780D;
+  border: none;
+  color: rgb(253, 253, 253);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.tela-login form span {
+  text-align: left;
+}
+.tela-login input {
+  margin-top: 30px;
+  background-color: rgba(21, 20, 20, 0.629);
+  color: white;
+  font-size: large;
+  padding: 10px 20px 10px 20px;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 12px;
+}
+.tela-login .input-container {
+  position: relative;
+}
+.tela-login .input-with-icon {
+  padding-left: 40px; /* Espaçamento para o ícone */
+}
+.tela-login .input-icon {
+  position: absolute;
+  left: 10px; /* Posição do ícone */
+  top: 58%; /* Alinhamento vertical */
+}

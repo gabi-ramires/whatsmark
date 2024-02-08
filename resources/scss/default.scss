@@ -1,25 +1,63 @@
 * {
     margin: 0;;
 }
+
+@font-face {
+    font-family: 'PTsans'; /* Nome que você deseja dar à sua fonte */
+    src: url('../fonts/PTSans-Regular.ttf') format('truetype'); 
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'PTsans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    
+    &:hover {
+        color:#EF780D;
+    }
 }
 
 /************************ HEADER ************************/
 header {
-    height: 10vh;
+    height: 7vh;
     background-color: #333;
     color: #fff;
     padding: 10px 0;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 h1 {
-    color: #0690ec;
+    display: flex;
+    margin: 0;
+    color: #EF780D;
+}
+
+.logo {
+    position: absolute;
+    left: 40px;
+    display: flex;
+    align-items: center;
+
+    img {
+        padding-right: 10px;
+        align-items: center;
+    }
 }
 
 /* Estilos para o menu */
-nav ul {
+nav {
+    display: flex;
+    position: absolute;
+    right: 200px;
+    justify-content: end;
+
+ ul {
+    display: flex;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -35,16 +73,19 @@ nav ul {
             font-size: 18px;
 
             &:hover{
-                color: #0690ec; /* Cor ao passar o mouse */
+                color: #EF780D; /* Cor ao passar o mouse */
             }
         }
         
     }
+}   
 }
+
+
 
 /************************ MAIN ************************/
 .container {
-    height: 85vh;
+    height: 89vh;
     display: flex;
 
     .row {
@@ -74,7 +115,7 @@ nav ul {
 /************************ FOOTER ************************/
 /* Estilos para o rodapé */
 footer {
-    height: 5vh;
+    height: 3vh;
     display: flex;
     background-color: #333;
     color: #fff;
