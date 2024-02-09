@@ -122,6 +122,7 @@ nav ul li a:hover {
 /************************ MAIN ************************/
 .container {
   display: flex;
+  height: 89vh;
 }
 .container .row {
   display: flex;

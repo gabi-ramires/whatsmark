@@ -1,0 +1,38 @@
+/* Estilos para o menu */
+.col {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+.col aside {
+  display: flex;
+  flex-direction: column;
+  background-color: #EF780D;
+  width: 200px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.col aside ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-align: start;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.col aside ul li {
+  display: block;
+  margin-right: 20px;
+}
+.col aside ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+.col aside ul li a:hover {
+  color: black; /* Cor ao passar o mouse */
+}

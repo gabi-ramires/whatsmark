@@ -1,0 +1,42 @@
+/* Estilos para o menu */
+aside {
+  display: flex;
+  flex-direction: column;
+  background-color: #EF780D;
+  width: 200px;
+  height: 89vh;
+  margin: 0;
+  padding: 0;
+}
+aside ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-align: start;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+aside ul li {
+  display: block;
+  margin-right: 20px;
+  padding-left: 5px;
+  padding-top: 10px;
+}
+aside ul li i {
+  color: white;
+  padding-right: 10px;
+}
+aside ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+aside ul li a:hover {
+  color: #333;
+}
+aside ul li a:hover i {
+  color: #333;
+}

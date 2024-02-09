@@ -11,6 +11,7 @@
 
     .login {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         width: 400px;
         height: 400px;
@@ -19,6 +20,7 @@
         align-self: center;
         border-radius: 12px;
         backdrop-filter: blur(4px);
+        box-shadow: 0px 4px 8px rgba(13, 13, 13, 0.837);
     }
 
     form {
@@ -27,7 +29,6 @@
         align-items: center;
 
         h2 {
-            padding-top: 20px;
             color: #EF780D;
         }
 
@@ -36,20 +37,17 @@
             &:hover{
                 cursor: pointer;
                 background-color: #EF780D;
-                border: none;
+                border: 1px solid #EF780D;
                 color: rgb(253, 253, 253);
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             }
         }
 
-        span {
-            text-align: left;
-        }
     }
 
     input {
         margin-top: 30px;
-        background-color: rgba(21, 20, 20, 0.629);
+        background-color: rgba(21, 20, 20, 0.522);
         color: white;
         font-size: large;
         padding: 10px 20px 10px 20px;
@@ -57,6 +55,9 @@
         border: 1px solid gray;
         border-radius: 12px;
 
+    }
+    ::placeholder {
+        color: #f1eded; /* Cor do placeholder */
     }
 
     .input-container {
@@ -69,6 +70,14 @@
         position: absolute;
         left: 10px; /* Posição do ícone */
         top: 58%; /* Alinhamento vertical */
+    }
+
+    span {
+        color: white;
+
+        &:hover{
+            color: rgb(47, 46, 46);
+        }
     }
 
 

@@ -22,13 +22,18 @@ Route::get('/sobre', function () {
     return view('sobre');
 });
 
-Route::get('/whatsmark', function () {
-    return view('whatsmark');
+Route::get('/tutorial', function () {
+    return view('tutorial');
 });
 
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/campanhas', function () {
+    return view('campanhas/index');
+});
+
 
 
 

@@ -1,6 +1,6 @@
-@extends('default')
+@extends('navsite')
 
-@section('content')
+@section('login')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 <div class="container tela-login">
     <div class='row'>
@@ -16,10 +16,13 @@
                         <input type='password' placeholder="Senha" class="input-with-icon">
                         <i class="bi bi-lock input-icon"></i>
                     </div>
-                    <a href="#"><span>Esqueci a senha</span></a>
+                        <a href="#"><span>Esqueci a senha</span></a>
+                        <a href="#"><span>Cadastre-se</span></a>   
 
+                
                     <input id="submit" type="submit" value="Entrar">
                 </form>
+                
             </div>
         </div>
 

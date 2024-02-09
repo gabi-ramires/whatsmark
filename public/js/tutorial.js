@@ -5,8 +5,7 @@ var sessionIdElement = document.getElementById('sessionId');
 var sessionID = sessionIdElement.innerText;
 
 function startSession() {
-
-    alert(sessionID);
+    var sessao = document.getElementById('sessao')
 
     fetch(`/api/session/start/${sessionID}`, {
     method: 'GET',
@@ -21,6 +20,11 @@ function startSession() {
     })
     .then(data => {
         console.log(data)
+
+        if (data.error == `Session already exists for: ${sessionID}`) {
+            sessao.innerText = 'Iniciada';
+            sessao.style.color = 'green';
+        }
 
     })
     .catch(error => {
@@ -47,7 +51,7 @@ function onPageLoad() {
         console.log(data)
 
         if (data.state == "CONNECTED") {
-            status.innerText = 'Iniciada';
+            status.innerText = 'Conectado';
             status.style.color = 'green';
         }
     })
@@ -78,7 +82,7 @@ function carregaQrCode(){
         console.log(imagem.src)
     })
     .catch(error => {
-        console.error('Erro:', error);
+        console.error(error);
     });
 }
 
@@ -87,14 +91,17 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
 
     // Extrai os valores do formulário
-    var phone = document.getElementById("phone").value;
-    var message = document.getElementById("message").value;
+    var phone = document.getElementById("phone");
+    var message = document.getElementById("message");
+
+    var log = document.getElementById("log");
+    var novoSpan = document.createElement('span');
 
     // Monta o objeto com os dados do telefone e da mensagem
     var data = {
-    "chatId": phone+"@c.us",
+    "chatId": phone.value+"@c.us",
     "contentType": "string",
-    "content": message
+    "content": message.value
     };
 
     var body = JSON.stringify(data)
@@ -113,6 +120,18 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     })
     .then(data => {
         console.log(data)
+        phone.value = "";
+        message.value = "";
+
+        if (data.success) {
+            novoSpan.textContent = 'WhatsApp enviado com sucesso!';
+            novoSpan.style.color = 'green';
+            log.appendChild(novoSpan);
+        } else {
+            novoSpan.textContent = 'Não foi possível enviar ...';
+            novoSpan.style.color = 'orange';
+            log.appendChild(novoSpan);
+        }
 
     })
     .catch(error => {
@@ -125,6 +144,10 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
 // Adicionar um ouvinte de evento para o evento DOMContentLoaded
 document.addEventListener('DOMContentLoaded', onPageLoad);
+document.addEventListener('DOMContentLoaded', startSession);
 document.addEventListener('DOMContentLoaded', carregaQrCode);
+
+
+
 
 

@@ -1,6 +1,6 @@
 @extends('default')
 
-@section('content')
+@section('conteudo')
 
 <div class="container">
     <div class='row'>
