@@ -1,23 +1,23 @@
-@extends('navsite')
+@extends('site/navsite')
 
-@section('login')
+@section('conteudo')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 <div class="container tela-login">
     <div class='row'>
         <div class="col">
             <div class=login>
-                <form>
+                <form id="form-login">
                     <h2>ACESSAR CONTA</h2>
                     <div class="input-container">
-                        <input type="text" placeholder="Usuário" class="input-with-icon">
+                        <input id="email" type="email" name="email" placeholder="Email" class="input-with-icon" required>
                         <i class="bi bi-envelope input-icon"></i>
                     </div>
                     <div class="input-container">
-                        <input type='password' placeholder="Senha" class="input-with-icon">
+                        <input id="password" type='password' name="password"placeholder="Senha" class="input-with-icon" required>
                         <i class="bi bi-lock input-icon"></i>
                     </div>
                         <a href="#"><span>Esqueci a senha</span></a>
-                        <a href="#"><span>Cadastre-se</span></a>   
+                        <a href="/cadastro"><span>Cadastre-se</span></a>   
 
                 
                     <input id="submit" type="submit" value="Entrar">
@@ -29,5 +29,8 @@
 
     </div>
 </div>
+
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/login.js') }}"></script>
 
 @endsection

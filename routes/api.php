@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/session/start/{sessionId}', [ApiController::class, 'startNewSession
 Route::get('/session/status/{sessionId}', [ApiController::class, 'getStatusSession']);
 Route::get('/session/qr/{sessionId}/image', [ApiController::class, 'carregaQrCode']);
 Route::post('/client/sendMessage/{sessionId}', [ApiController::class, 'sendMessage']);
+
+
 
 class ApiController
 {   
@@ -140,6 +143,5 @@ class ApiController
     
         return $response;
     }
-    
-    
+
 }

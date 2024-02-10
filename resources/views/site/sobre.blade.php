@@ -1,15 +1,13 @@
-@extends('default')
+@extends('site/navsite')
 
 @section('conteudo')
 
 <div class="container">
     <div class='row'>
         <div class="col">
-        Coluna 3
+        Página sobre
         </div>
-        <div class="col">
-        Coluna 4
-        </div>
+
 
     </div>
 </div>

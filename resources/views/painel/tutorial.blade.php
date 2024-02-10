@@ -1,9 +1,9 @@
 
-@extends('default')
+@extends('painel/nav-painel')
 
 @section('conteudo')
 
-<link rel="stylesheet" href="{{ asset('css/whatsmark.css') }}">
+<link rel="stylesheet" href="{{ asset('css/tutorial.css') }}">
 <div class="whatsmark">
     <div class='row'>
         <div class="col">
@@ -58,6 +58,8 @@
     </div>
 </div>
 
-<script src="{{ asset('js/tutorial.js') }}"></script>
+<script src="{{ asset('js/painel/tutorial.js') }}"></script>
+
+
 
 @endsection

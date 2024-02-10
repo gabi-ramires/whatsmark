@@ -1,4 +1,4 @@
-@extends('default')
+@extends('painel/nav-painel')
 
 @section('conteudo')
 
