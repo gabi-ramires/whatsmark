@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VerificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,12 @@ Route::get('/campanhas', function () {
 
 
 
-// métodos
+// Users
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/login', [UsersController::class, 'login']);
+
+// Verifications
+Route::post('/verification', [VerificationsController::class, 'verifyIfEmailAlreadyExist']);
 
 
 

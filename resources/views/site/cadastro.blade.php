@@ -1,8 +1,8 @@
 @extends('site/navsite')
 
 @section('conteudo')
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
-<div class="container tela-login">
+<link rel="stylesheet" href="{{ asset('css/cadastro.css') }}">
+<div class="container tela-cadastro">
     <div class='row'>
         <div class="col">
             <div class=login>
@@ -12,17 +12,29 @@
                         <input id="nome" type="text" placeholder="Nome" class="input-with-icon">
                         <i class="bi bi-emoji-smile input-icon"></i>
                     </div>
+                    <div class='danger nome' style='visibility: hidden;'>
+                        <span>Mensagem de erro</span>
+                    </div>
                     <div class="input-container">
                         <input id="email" type="email" placeholder="Email" class="input-with-icon">
                         <i class="bi bi-envelope input-icon"></i>
+                    </div>
+                    <div class='danger email' style='visibility: hidden;'>
+                        <span>Mensagem de erro</span>
                     </div>
                     <div class="input-container">
                         <input id="senha" type='password' placeholder="Senha" class="input-with-icon">
                         <i class="bi bi-lock input-icon"></i>
                     </div>
+                    <div class='danger senha' style='visibility: hidden;'>
+                        <span>Mensagem de erro</span>
+                    </div>
                     <div class="input-container">
                         <input id="repete-senha" type='password' placeholder="Repetir senha" class="input-with-icon">
                         <i class="bi bi-lock input-icon"></i>
+                    </div>
+                    <div class='danger repete-senha' style='visibility: hidden;'>
+                        <span>Mensagem de erro</span>
                     </div>
 
         

@@ -38,7 +38,7 @@ $('#nome, #email, #senha, #repete-senha').blur(function() {
  *   Descrição: Funções para realizar o cadastro
  *   
  ***********************************************************************/
-
+// Cadastro
 $('#form-cadastro').submit(function(event) {
     // Impedir o envio do formulário padrão
     event.preventDefault();
@@ -66,4 +66,47 @@ $('#form-cadastro').submit(function(event) {
     });
 });
 
+// Verifica se email já existe no banco
+$('#email').on('input',function(){
+    var email = $('#email').val();
+    if (email.trim() !== ""){
+        var formData = {
+            email: email
+        };
 
+        $.ajax({
+            url: '/verification',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(data) {
+                console.log(data)
+                //some mensagem de erro
+                $(".email").css("visibility", "hidden");
+
+                //cor verde no input
+                $("#email").removeClass("error")
+                $("#email").addClass("sucess")
+                
+                // cor verde no icone
+                $(".bi-envelope").removeClass("error-icon")
+                $(".bi-envelope").addClass("sucess-icon")
+
+            },
+            error: function(xhr, status, error) {
+                console.error('There was a problem with the ajax operation:', error);
+                // aparece a mensagem de erro
+                $(".email").css("visibility", "visible");
+                $(".email span").text("Email não disponível");
+
+                // cor vermelha no input
+                $("#email").removeClass("sucess")
+                $("#email").addClass("error")
+
+                // cor vermelha no icone
+                $(".bi-envelope").removeClass("sucess-icon")
+                $(".bi-envelope").addClass("error-icon")
+            }
+        });
+    }
+})

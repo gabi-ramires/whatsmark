@@ -1,0 +1,91 @@
+@charset "UTF-8";
+.tela-cadastro {
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-image: url("../img/bg-login.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+.tela-cadastro .login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  border: 1px solid gray;
+  background-color: transparent;
+  align-self: center;
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  box-shadow: 0px 4px 8px rgba(13, 13, 13, 0.837);
+}
+.tela-cadastro form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tela-cadastro form h2 {
+  color: #EF780D;
+}
+.tela-cadastro form #submit:hover {
+  cursor: pointer;
+  background-color: #EF780D;
+  border: 1px solid #EF780D;
+  color: rgb(253, 253, 253);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.tela-cadastro input {
+  margin-top: 10px;
+  background-color: rgba(21, 20, 20, 0.522);
+  color: white;
+  font-size: large;
+  padding: 10px 20px 10px 20px;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 12px;
+}
+.tela-cadastro ::-moz-placeholder {
+  color: #f1eded; /* Cor do placeholder */
+}
+.tela-cadastro ::placeholder {
+  color: #f1eded; /* Cor do placeholder */
+}
+.tela-cadastro .input-container {
+  position: relative;
+}
+.tela-cadastro .input-with-icon {
+  padding-left: 40px; /* Espaçamento para o ícone */
+}
+.tela-cadastro .input-icon {
+  position: absolute;
+  left: 10px; /* Posição do ícone */
+  top: 40%; /* Alinhamento vertical */
+}
+.tela-cadastro span {
+  color: white;
+}
+.tela-cadastro span:hover {
+  color: rgb(47, 46, 46);
+}
+.tela-cadastro .danger span {
+  color: red;
+}
+.tela-cadastro .sucess {
+  color: green;
+  border: 1px solid green;
+}
+.tela-cadastro .sucess-icon {
+  color: green;
+}
+.tela-cadastro .error {
+  color: red;
+  border: 1px solid red;
+}
+.tela-cadastro .error-icon {
+  color: red;
+}
