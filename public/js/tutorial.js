@@ -97,25 +97,24 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     var log = document.getElementById("log");
     var novoSpan = document.createElement('span');
 
-    // Monta o objeto com os dados do telefone e da mensagem
-    var data = {
-    "chatId": phone.value+"@c.us",
-    "contentType": "string",
-    "content": message.value
-    };
-
-    var body = JSON.stringify(data)
-
-    
-    fetch(`/api/client/sendMessage/42342/${body}`, {
-    method: 'POST',
-    headers: {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-        'x-api-key': 'comunidadezdg.com.br'
-    }
+   
+    fetch('/api/client/sendMessage/42342', {
+        method: 'POST',
+        headers: {
+            'accept': '*/*',
+            'Content-Type': 'application/json',
+            'x-api-key': 'comunidadezdg.com.br'
+        },
+        body: JSON.stringify({
+            "chatId": phone.value+"@c.us",
+            "contentType": "string",
+            "content": message.value
+        })
     })
     .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao enviar a mensagem');
+        }
         return response.json();
     })
     .then(data => {
@@ -132,13 +131,15 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
             novoSpan.style.color = 'orange';
             log.appendChild(novoSpan);
         }
-
     })
     .catch(error => {
-      
+        console.error('Ocorreu um erro:', error);
     });
 
+
 });
+
+
 
 
 

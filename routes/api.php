@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/session/start/{sessionId}', [ApiController::class, 'startNewSession']);
 Route::get('/session/status/{sessionId}', [ApiController::class, 'getStatusSession']);
 Route::get('/session/qr/{sessionId}/image', [ApiController::class, 'carregaQrCode']);
-Route::post('/client/sendMessage/{sessionId}/{body}', [ApiController::class, 'sendMessage']);
+Route::post('/client/sendMessage/{sessionId}', [ApiController::class, 'sendMessage']);
 
 class ApiController
 {   
@@ -104,30 +104,42 @@ class ApiController
         return $imageData;
     }
 
-    public function sendMessage($sessionId, $data='nada')
+    public function sendMessage($sessionId, Request $request)
     {   
         $url = $this->uri."client/sendMessage/{$sessionId}";
     
+        // Obter os parâmetros do pedido
+        $chatId = $request->request->get('chatId');
+        $msg = $request->request->get('content');
+    
+        // Construir o corpo da solicitação como um objeto JSON
+        $requestData = json_encode(array(
+            'chatId' => $chatId,
+            'content' => $msg,
+            "contentType" => "string"
+        ));
+    
         $headers = array(
             'Accept: */*',
-            'x-api-key: ' . $this->apiKey,
+            'x-api-key: comunidadezdg.com.br',
             'Content-Type: application/json'
         );
-
+    
         $ch = curl_init();
-
+    
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestData); // Passar os dados convertidos para JSON
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
+    
         $response = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+    
         curl_close($ch);
-
+    
         return $response;
     }
+    
     
 }
