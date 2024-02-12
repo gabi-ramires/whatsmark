@@ -32,7 +32,7 @@ if ($user) {
                     @if(isset($idSession))
                         {{$idSession}}
                     @else
-                        <a href="{{ route('getIdSession') }}">Obter ID de Sessão</a>
+                        <a href="{{ route('setup') }}">Obter ID de Sessão</a>
                     @endif
                     </span></strong>
                 </div>                
@@ -44,7 +44,7 @@ if ($user) {
                 <h2>2. Escaneie o QR Code abaixo</h2>
                 <button onclick="carregaQrCode()">Gerar</button><br>
                 <div>
-                    <span>Status: </span><strong><span id='status' style="color: red">Desconectado</span></strong>
+                    <span>Status: </span><strong><span id='status' style="color: red">Desconectado</span>&nbsp;<a href="#" onclick="verificaConexao()"><i class="bi bi-arrow-repeat"></i></a></strong>
                 </div><br>
                 <div class='qrcode'>
                     <img id='imagem' src="" width="250px" alt='qrcode'>    

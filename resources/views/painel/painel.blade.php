@@ -21,11 +21,18 @@ if ($user) {
 <div class='col index'>
     <h2>Bem vinda, <?= $nome; ?></h2>
     <div class='col'>
-        <div id='setup' class='componenteIndex'>
+        <div id='setup' class='componenteIndex' style='display: none'>
             <div class="textoComponente" >
                 <span>Você ainda não configurou o seu número de telefone no serviço de WhatsMark</span>
             </div>
             <a href="/tutorial"><button>Configurar</button></a>
+        </div>
+
+        <div id='iniciar' class='componenteIndex' style='display: none'>
+            <div class="textoComponente" >
+                <span>Tudo pronto, agora você já pode criar suas companhas!</span>
+            </div>
+            <a href="/campanhas"><button>Começar</button></a>
         </div>
 
 

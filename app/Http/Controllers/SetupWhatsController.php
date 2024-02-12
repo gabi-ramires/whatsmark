@@ -10,7 +10,7 @@ use App\Models\SetupWhats;
 
 class SetupWhatsController extends Controller
 {
-    public function getIdSession()
+    public function setup()
     {
         // Recuperar o ID do usuário autenticado
         $userId = Auth::id();
@@ -24,4 +24,21 @@ class SetupWhatsController extends Controller
         // Passar o IdSession para a view
         return view('painel/tutorial', ['idSession' => $idSession]);
     }
+
+    public function getIdSession()
+    {
+        // Recuperar o ID do usuário autenticado
+        $userId = Auth::id();
+
+        // Recuperar o registro da tabela SetupWhats com base no IdUser
+        $setup = SetupWhats::where('IdUser', $userId)->first();
+
+        // Verificar se o registro existe e obter o IdSession
+        $idSession = $setup ? $setup->IdSession : '';
+
+        return response()->json(['idSession' => $idSession]);
+    }
+
+
+    
 }

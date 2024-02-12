@@ -63,7 +63,9 @@ Route::match(['get', 'post'], '/logout', [UsersController::class, 'logout']);
 Route::post('/verification', [VerificationsController::class, 'verifyIfEmailAlreadyExist']);
 
 // SetupWhats
-Route::get('/getIdSession', [SetupWhatsController::class, 'getIdSession'])->name('getIdSession');
+Route::get('/setup', [SetupWhatsController::class, 'setup'])->name('setup');
+Route::get('/getIdSession', [SetupWhatsController::class, 'getIdSession']);
+
 
 
 

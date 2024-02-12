@@ -160,10 +160,10 @@ document.addEventListener('DOMContentLoaded', carregaQrCode);
 
 
 // Redirecionar para a rota getIdSession quando a página for carregada
-if (window.location.pathname !== '/getIdSession') {
+if (window.location.pathname !== '/setup') {
     // Redirecionar para a rota getIdSession quando a página for carregada
     window.onload = function() {
-        window.location.href = '/getIdSession';
+        window.location.href = '/setup';
     };
 }
 

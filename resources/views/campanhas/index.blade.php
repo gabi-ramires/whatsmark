@@ -16,7 +16,8 @@ if ($user) {
 
 @section('conteudo')
 
-<div>
+<link rel="stylesheet" href="{{ asset('css/campanhas.css') }}">
+<div class='col campanhas'>
     <h2>Campanhas</h2>
 </div>
 
