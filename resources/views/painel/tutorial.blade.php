@@ -1,7 +1,21 @@
+@if(!Auth::check())
+    <script>window.location.href = "{{ url('/') }}";</script>
+@endif
+<?php
+// Verifica se o usuário está autenticado
+$user = Auth::user();
+if ($user) {
+    $nome = $user->name;
+} else {
+    header('Location: /');
+    exit();
+}
+?>
 
 @extends('painel/nav-painel')
 
 @section('conteudo')
+
 
 <link rel="stylesheet" href="{{ asset('css/tutorial.css') }}">
 <div class="whatsmark">
@@ -14,7 +28,13 @@
                     <span>Status: </span><strong><span id='sessao' style="color: red">Não iniciado</span></strong>
                 </div>
                 <div>
-                    <span>Session ID: </span><strong><span id='sessionId'>42342</span></strong>
+                    <span>Session ID: </span><strong><span id='sessionId'>
+                    @if(isset($idSession))
+                        {{$idSession}}
+                    @else
+                        <a href="{{ route('getIdSession') }}">Obter ID de Sessão</a>
+                    @endif
+                    </span></strong>
                 </div>                
             </div>
 
@@ -27,7 +47,7 @@
                     <span>Status: </span><strong><span id='status' style="color: red">Desconectado</span></strong>
                 </div><br>
                 <div class='qrcode'>
-                    <img id='imagem' src="" width="250px">    
+                    <img id='imagem' src="" width="250px" alt='qrcode'>    
                 </div>
                                 
             </div>
@@ -58,8 +78,7 @@
     </div>
 </div>
 
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/painel/tutorial.js') }}"></script>
-
-
 
 @endsection

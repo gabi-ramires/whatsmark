@@ -4,6 +4,9 @@ var sessionIdElement = document.getElementById('sessionId');
 // Obter o valor dentro do elemento span
 var sessionID = sessionIdElement.innerText;
 
+/**
+ * Inicia sessão
+ */
 function startSession() {
     var sessao = document.getElementById('sessao')
 
@@ -11,8 +14,7 @@ function startSession() {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'x-api-key': 'comunidadezdg.com.br'
+        'Content-Type': 'application/json'
     }
     })
     .then(response => {
@@ -33,15 +35,16 @@ function startSession() {
 
 }
 
-// Definir a função a ser chamada quando a página é carregada
-function onPageLoad() {
+/**
+ * Verifica a conexão (se o qrcode já foi escaneado)
+ */
+function verificaConexao() {
     var status = document.getElementById('status')
-    fetch(`/api/session/status/42342`, {
+    fetch(`/api/session/status/${sessionID}`, {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'x-api-key': 'comunidadezdg.com.br'
+        'Content-Type': 'application/json'
     }
     })
     .then(response => {
@@ -58,14 +61,18 @@ function onPageLoad() {
     .catch(error => {
       
     });
+    
 }
 
+
+/**
+ * Função que carrega o QR Code na tela
+ */
 function carregaQrCode(){
-    fetch(`/api/session/qr/42342/image`, {
+    fetch(`/api/session/qr/${sessionID}/image`, {
         method: 'GET',
         headers: {
-            'Accept': 'image/png', 
-            'x-api-key': 'comunidadezdg.com.br'
+            'Accept': 'image/png'
         }
     })
     .then(response => {
@@ -74,12 +81,13 @@ function carregaQrCode(){
         }
         return response.blob(); // Converte a resposta em um objeto Blob
     })
-    .then(blob => {
+    .then(blob => { 
         console.log(blob)
         var url = URL.createObjectURL(blob);
         var imagem = document.getElementById('imagem');
         imagem.src = url;
         console.log(imagem.src)
+
     })
     .catch(error => {
         console.error(error);
@@ -87,6 +95,9 @@ function carregaQrCode(){
 }
 
 
+/**
+ * Função que faz o envio teste
+ */
 document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
 
@@ -98,12 +109,11 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     var novoSpan = document.createElement('span');
 
    
-    fetch('/api/client/sendMessage/42342', {
+    fetch(`/api/client/sendMessage/${sessionID}`, {
         method: 'POST',
         headers: {
             'accept': '*/*',
-            'Content-Type': 'application/json',
-            'x-api-key': 'comunidadezdg.com.br'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             "chatId": phone.value+"@c.us",
@@ -144,10 +154,18 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
 
 // Adicionar um ouvinte de evento para o evento DOMContentLoaded
-document.addEventListener('DOMContentLoaded', onPageLoad);
+document.addEventListener('DOMContentLoaded', verificaConexao);
 document.addEventListener('DOMContentLoaded', startSession);
 document.addEventListener('DOMContentLoaded', carregaQrCode);
 
+
+// Redirecionar para a rota getIdSession quando a página for carregada
+if (window.location.pathname !== '/getIdSession') {
+    // Redirecionar para a rota getIdSession quando a página for carregada
+    window.onload = function() {
+        window.location.href = '/getIdSession';
+    };
+}
 
 
 

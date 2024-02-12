@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerificationsController;
+use App\Http\Controllers\SetupWhatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,14 +48,23 @@ Route::get('/campanhas', function () {
     return view('campanhas/index');
 });
 
+Route::get('/meus-planos', function () {
+    return view('painel/meus-planos');
+});
+
 
 
 // Users
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/login', [UsersController::class, 'login']);
+Route::match(['get', 'post'], '/logout', [UsersController::class, 'logout']);
 
 // Verifications
 Route::post('/verification', [VerificationsController::class, 'verifyIfEmailAlreadyExist']);
+
+// SetupWhats
+Route::get('/getIdSession', [SetupWhatsController::class, 'getIdSession'])->name('getIdSession');
+
 
 
 

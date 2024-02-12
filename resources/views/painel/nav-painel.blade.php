@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="/painel">Inicio</a></li>
                 <li><a href="#">Conta</a></li>
-                <li><a href="/">Sair</a></liSair>
+                <li><a href="/logout">Sair</a></li>
             </ul>
         </nav>
     </header>
@@ -35,6 +35,7 @@
                     <li><a href="/painel"><i class="bi bi-house-door-fill"></i>Inicio</a></li>
                     <li><a href="/tutorial"><i class="bi bi-rocket-takeoff"></i></i>Setup</a></li>
                     <li><a href="/campanhas"><i class="bi bi-send"></i>Campanhas</a></li>
+                    <li><a href="/meus-planos"><i class="bi bi-stars"></i>Meus Planos</a></li>
                 </ul>
             </aside>
         <div class="col">

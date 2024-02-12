@@ -5,6 +5,10 @@
 <div class="container tela-login">
     <div class='row'>
         <div class="col">
+            <div id="retorno-cadastro" class='retorno-registro-green' style='visibility: hidden'>
+                <i class="bi bi-check-circle"></i>
+                <span id='msg'>Não foi possível realizar o cadastro.</span>
+            </div>
             <div class=login>
                 <form id="form-login">
                     <h2>ACESSAR CONTA</h2>

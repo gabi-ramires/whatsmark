@@ -16,9 +16,15 @@ if ($user) {
 
 @section('conteudo')
 
-<div>
-    <h2>Campanhas</h2>
-</div>
+<div class="container">
+    <div class='row'>
+        <div class="col">
+        <h2>Meus Planos</h2>
 
+        </div>
+
+
+    </div>
+</div>
 
 @endsection

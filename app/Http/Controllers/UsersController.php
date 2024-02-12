@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\SetupWhats;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
@@ -18,12 +19,29 @@ class UsersController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
+        // Validação se as senhas são iguais
+        $password = $request['password'];
+        $repeatPassword = $request['repeatPassword'];
+        if($password != $repeatPassword) {
+            return response()->json(['message' => 'Passwords are different'], 409);
+        }
+
+
         // Criação de um novo usuário
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
         ]);
+
+        // Alimentar a tabela "setupWhats"
+        SetupWhats::create([
+            'IdUser' => $user->id,
+            'IdSession' => $this->geraIdSession($user->id)
+        ]);
+
+        // Autenticação do usuário recém-criado
+        Auth::login($user);
 
         // Retorna uma resposta adequada
         return response()->json(['message' => 'User registered successfully'], 201);
@@ -46,5 +64,18 @@ class UsersController extends Controller
             // Autenticação falhou
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        
+        return redirect('/');
+    }
+
+    public function geraIdSession($idUser){
+        $idSession = md5($idUser);
+
+        return $idSession;
     }
 }

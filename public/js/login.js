@@ -59,11 +59,45 @@ $('#form-login').submit(function(event) {
         success: function(data) {
             console.log(data);
             if(data.redirect) {
-                window.location.href = data.redirect;
+                // faz aparecer o componente
+                $("#retorno-cadastro").css("visibility", "visible");
+
+                // adiciona a cor verde no componente
+                $("#retorno-cadastro").removeClass("retorno-registro-red");
+                $("#retorno-cadastro").addClass("retorno-registro-green");
+
+                // mensagem
+                $("#msg").text("Login realizado com sucesso!")
+
+                // muda para icone de sucesso
+                $("#retorno-cadastro i").removeClass("bi bi-x-circle")
+                $("#retorno-cadastro i").addClass("bi bi-check-circle")
+                
+                // Redireciona para o painel
+                setTimeout(function() {
+                    window.location.href = data.redirect;
+                }, 1000);
+
+                // Criando cookie
+                document.cookie = "usuarioLogado=true; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
+
             }
         },
         error: function(xhr, status, error) {
             console.error('There was a problem with the ajax operation:', error);
+            // faz aparecer o componente
+            $("#retorno-cadastro").css("visibility", "visible");
+
+            // adiciona a cor vermelha no componente
+            $("#retorno-cadastro").removeClass("retorno-registro-green");
+            $("#retorno-cadastro").addClass("retorno-registro-red");
+
+            // mensagem
+            $("#msg").text("Email ou senha incorretos.")
+
+            // muda para icone de erro
+            $("#retorno-cadastro i").removeClass("bi bi-check-circle")
+            $("#retorno-cadastro i").addClass("bi bi-x-circle")
         }
     });
 });
