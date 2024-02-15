@@ -34,7 +34,14 @@
                 <ul>
                     <li><a href="/painel"><i class="bi bi-house-door-fill"></i>Inicio</a></li>
                     <li><a href="/tutorial"><i class="bi bi-rocket-takeoff"></i></i>Setup</a></li>
-                    <li><a href="/campanhas"><i class="bi bi-send"></i>Campanhas</a></li>
+                    <li class="submenu-item"><a href="/campanhas">
+                            <i class="bi bi-send"></i>Campanhas
+                            <ul class="submenu">
+                                <li><i class="bi bi-person"></i><a href="/contatos">Contatos</a></li>
+                                <li><i class="bi bi-journal-check"></i><a href="#">Templates</a></li>
+                            </ul>
+                        </a>
+                    </li>
                     <li><a href="/meus-planos"><i class="bi bi-stars"></i>Meus Planos</a></li>
                 </ul>
             </aside>

@@ -1,5 +1,150 @@
-.campanhas {
-    h2 {
+h2 {
+    padding: 20px;
+}
+
+
+
+.contatos {
+
+    .card {
+        display: flex;
+        color: white;
+        flex-direction: column;
+        background-color: rgba(19, 18, 18, 0.883);
+        border: 1px solid black;
+        height:400px;
+        width: 500px;
+        border-radius: 12px;
         padding: 20px;
+        margin-left: 20px;
+
     }
+
+    input, textarea {
+        background-color: white;
+        color: black;
+        font-size: large;
+        padding: 5px 10px 5px 10px;
+        outline: none;
+        border: 1px solid gray;
+        border-radius: 12px;
+        margin-top: 4px;
+        width: 200px;
+    }
+
+    #file {
+        width: 400px;
+    }
+
+    table {
+        width: 50;
+        border-collapse: collapse;
+
+    }
+
+    /* Estilo para o cabeçalho da tabela */
+    th, td {
+
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #dad5d1;
+        color: black;
+    }
+
+
+    /* Estilo para linhas pares da tabela */
+    tr:nth-child(even) {
+        
+    }
+
+    /* Estilo para linhas ímpares da tabela */
+    tr:nth-child(odd) {
+        //
+    }
+
+    i {
+        margin-right: 5px;
+
+        &:hover{
+            cursor: pointer;
+        }
+        
+    }
+
+    .blue {
+        color: rgb(6, 120, 235);
+    }
+    .red {
+        color: rgb(246, 79, 79);
+    }
+    .green {
+        color: rgb(24, 213, 24);
+    }
+
+
+        width: 100%;
+
+        th {
+            background-color: #c2c1bd;
+        }
+
+        /* Estilo para linhas pares da tabela */
+        tr:nth-child(even) {
+            
+        }
+
+        /* Remover as setas de incremento e decremento do input number */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input {
+            border-radius: 0;
+            background-color: transparent;
+        }
+
+        input::placeholder {
+            color: rgb(71, 69, 69) !important;
+        }
+
+    
+
+    .modal-content {
+        width: 500px !important;
+        position: relative; 
+    }
+
+    .nome-lista {
+
+        h3 {
+            margin-bottom: 5px;
+            text-align: center;
+            display: flex;
+        }
+
+
+        span {
+            position:absolute;
+            right: 8px;
+            top:0;
+        }
+    }
+
+    #submit {
+        background-color: green;
+        border: green;
+
+        &:hover {
+            border: green;
+            filter: brightness(1.3);
+        }
+    }
+
+
 }

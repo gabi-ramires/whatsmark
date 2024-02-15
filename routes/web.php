@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerificationsController;
 use App\Http\Controllers\SetupWhatsController;
+use App\Http\Controllers\ListsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +45,8 @@ Route::get('/tutorial', function () {
     return view('painel/tutorial');
 });
 
-Route::get('/campanhas', function () {
-    return view('campanhas/index');
+Route::get('/contatos', function () {
+    return view('campanhas/contatos');
 });
 
 Route::get('/meus-planos', function () {
@@ -65,6 +66,15 @@ Route::post('/verification', [VerificationsController::class, 'verifyIfEmailAlre
 // SetupWhats
 Route::get('/setup', [SetupWhatsController::class, 'setup'])->name('setup');
 Route::get('/getIdSession', [SetupWhatsController::class, 'getIdSession']);
+
+// Lists
+Route::post('/lists', [ListsController::class, 'store'])->name('lists.store');
+Route::post('/update', [ListsController::class, 'update'])->name('lists.update');
+Route::post('/getLists', [ListsController::class, 'getLists']);
+
+
+
+
 
 
 

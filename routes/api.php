@@ -33,8 +33,8 @@ class ApiController
 
     public function __construct()
     {
-        $this->uri = "http://34.125.239.151:3000/";
-        $this->apiKey = 'comunidadezdg.com.br';
+        $this->uri = "http://34.125.164.134:3000/";
+        $this->apiKey = 'chavegabi';
     }
     
     public function startNewSession($sessionId)
@@ -124,7 +124,7 @@ class ApiController
     
         $headers = array(
             'Accept: */*',
-            'x-api-key: comunidadezdg.com.br',
+            'x-api-key:' . $this->apiKey,
             'Content-Type: application/json'
         );
     

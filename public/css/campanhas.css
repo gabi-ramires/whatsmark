@@ -1,3 +1,107 @@
-.campanhas h2 {
+@charset "UTF-8";
+h2 {
   padding: 20px;
+}
+
+.contatos {
+  /* Estilo para o cabeçalho da tabela */
+  /* Estilo para linhas pares da tabela */
+  /* Estilo para linhas ímpares da tabela */
+  width: 100%;
+  /* Estilo para linhas pares da tabela */
+  /* Remover as setas de incremento e decremento do input number */
+}
+.contatos .card {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  background-color: rgba(19, 18, 18, 0.883);
+  border: 1px solid black;
+  height: 400px;
+  width: 500px;
+  border-radius: 12px;
+  padding: 20px;
+  margin-left: 20px;
+}
+.contatos input, .contatos textarea {
+  background-color: white;
+  color: black;
+  font-size: large;
+  padding: 5px 10px 5px 10px;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 12px;
+  margin-top: 4px;
+  width: 200px;
+}
+.contatos #file {
+  width: 400px;
+}
+.contatos table {
+  width: 50;
+  border-collapse: collapse;
+}
+.contatos th, .contatos td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.contatos th {
+  background-color: #dad5d1;
+  color: black;
+}
+.contatos i {
+  margin-right: 5px;
+}
+.contatos i:hover {
+  cursor: pointer;
+}
+.contatos .blue {
+  color: rgb(6, 120, 235);
+}
+.contatos .red {
+  color: rgb(246, 79, 79);
+}
+.contatos .green {
+  color: rgb(24, 213, 24);
+}
+.contatos th {
+  background-color: #c2c1bd;
+}
+.contatos input[type=number]::-webkit-inner-spin-button,
+.contatos input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.contatos input {
+  border-radius: 0;
+  background-color: transparent;
+}
+.contatos input::-moz-placeholder {
+  color: rgb(71, 69, 69) !important;
+}
+.contatos input::placeholder {
+  color: rgb(71, 69, 69) !important;
+}
+.contatos .modal-content {
+  width: 500px !important;
+  position: relative;
+}
+.contatos .nome-lista h3 {
+  margin-bottom: 5px;
+  text-align: center;
+  display: flex;
+}
+.contatos .nome-lista span {
+  position: absolute;
+  right: 8px;
+  top: 0;
+}
+.contatos #submit {
+  background-color: green;
+  border: green;
+}
+.contatos #submit:hover {
+  border: green;
+  filter: brightness(1.3);
 }

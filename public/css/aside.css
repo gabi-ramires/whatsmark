@@ -24,6 +24,7 @@ aside ul li {
   margin-right: 20px;
   padding-left: 5px;
   padding-top: 10px;
+  padding-bottom: 5px;
 }
 aside ul li i {
   color: white;
@@ -39,4 +40,14 @@ aside ul li a:hover {
 }
 aside ul li a:hover i {
   color: #333;
+}
+aside .submenu {
+  display: none;
+  position: static;
+  left: 100%;
+  top: 0;
+  background-color: #EF780D;
+}
+aside .submenu-item:hover .submenu {
+  display: block;
 }
