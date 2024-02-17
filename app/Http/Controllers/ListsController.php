@@ -83,7 +83,7 @@ class ListsController extends Controller
 
     // Converte o array de contatos em JSON
     $jsonContatos = json_encode($listaContatos);
-
+    
     // Procura a lista pelo ID e pelo ID do usuário autenticado
     $list = Lists::where('id', $id)->where('user_id', $user_id)->first();
 

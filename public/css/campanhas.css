@@ -84,7 +84,8 @@ h2 {
   color: rgb(71, 69, 69) !important;
 }
 .contatos .modal-content {
-  width: 500px !important;
+  width: -moz-min-content !important;
+  width: min-content !important;
   position: relative;
 }
 .contatos .nome-lista h3 {

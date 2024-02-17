@@ -1,8 +1,12 @@
 
-
-
 var contatosSalvos = [];
+getLists()
+
+/**
+ * Busca todas listas do usuário
+ */
 function getLists() {
+
     fetch(`/getLists`, {
     method: 'POST',
     headers: {
@@ -38,15 +42,13 @@ function getLists() {
                 <td>${nome}</td>
                 <td>Abrir planilha</td>
                 <td>
-                    <i class="bi bi-pencil blue openModal" onclick='abrirModal(${id})'></i>
-                    <i class="bi bi-download"></i>
-                    <i class="bi bi-trash-fill red"></i>
+                    <i class="bi bi-pencil blue openModal" onclick='abrirModal(${id})'>E</i>
+                    <i class="bi bi-download">D</i>
+                    <i class="bi bi-trash-fill red">R</i>
                 </td>
             </tr>
             `;
         });
-
-
     })
     .catch(error => {
       console.log(error)
@@ -54,7 +56,6 @@ function getLists() {
     
 }
 
-getLists()
 
 // Seleciona todos os botões que devem abrir o modal
 var btns = document.querySelectorAll('.openModal');
@@ -86,7 +87,7 @@ window.addEventListener('click', function(event) {
 
 var aux = 0;
 /**
- *  Abre modal da lista seleciona
+ *  Abre modal da lista selecionada
  * @param {int} id 
  */
 function abrirModal(id){
@@ -102,6 +103,7 @@ function abrirModal(id){
         if (lista.id == id) {
             console.log(lista.name);
             $('#nomelista input').val(lista.name);
+            $('#idLista').val(id)
 
             let contatos = JSON.parse(lista.contacts);
 
@@ -112,13 +114,13 @@ function abrirModal(id){
                 whats = contato.whatsapp;
 
                 corpoContatos.innerHTML += `
-                <tr class="contact">
-                <input name="id" value="${id}" style="display:none">
+                <tr id="${aux}" class="contact">
+                    <td style="display:none"><input name="id" value="${id}"></td>
                     <td><input type='text' name="contacts[${aux}][name]" value="${name}"></td>
                     <td><input type='number' name="contacts[${aux}][whatsapp]" value="${whats}"></td>
+                    <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})">R</i></td>
                 </tr>
                 `;
-
 
                 aux = aux + 1;
                 console.log("aux: "+aux)
@@ -126,20 +128,36 @@ function abrirModal(id){
 
         }
     });
+
+    $("#add-contact").click(function() {
+
+        addcontato(id)
+    })
+    
     
 }
 
-function addcontato() {
+
+/**
+ *  Adiciona novo contato na lista
+ */
+function addcontato(id) {
     let corpoContatos = document.getElementById('contatos');
     
     corpoContatos.innerHTML += `
-    <tr class="contact">
+    <tr id="${aux}" class="contact">
+        <td style="display:none"><input name="id" value="${id}"></td>
         <td><input type='text' name="contacts[${aux}][name]" value=""></td>
         <td><input type='number' name="contacts[${aux}][whatsapp]" value=""></td>
+        <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})">R</i></td>
     </tr>
     `;
 
     aux = aux + 1;
 
     console.log("aux: "+aux)
+}
+
+function removecontato(id) {
+    $("#"+id+"").remove();
 }

@@ -42,21 +42,23 @@ if ($user) {
         <div class="modal-content">
         <form  method="POST" action="{{ route('lists.update') }}">
             <div id = 'nomelista' class="nome-lista">
-                <h3><input name="name" value=""></h3><span class="close" data-dismiss="modal">&times;</span>
+                <h3><input id="nomeLista" name="name" value=""><input id="idLista" name='idLista' value="" style="display:none"></h3><span class="close" data-dismiss="modal">&times;</span>
                 
             </div>
                 <table class='tabela-contatos'>
                     <thead>
                         <tr>
+                            <th style="display:none">Id</th>
                             <th>Nome</th>
                             <th>WhatsApp</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id='contatos'>
                         <!-- listagem  dinamica dos contatos -->
                     </tbody>
                 </table>
-            <button type="button" onclick='addcontato()'id="add-contact">+ Contato</button>
+            <button type="button" id="add-contact">+ Contato</button>
             <button id='submit' type="submit">Salvar</button>
             </form>
         </div>
