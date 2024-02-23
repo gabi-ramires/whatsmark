@@ -22,7 +22,9 @@ function getLists() {
         var name = '';
         var whats = '';
         let corpoListas = document.getElementById('corpo-listas');
+        corpoListas.innerHTML = "";
         let contatosStr = "";
+        contatosSalvos = [];
 
         data.forEach(lista => {
             console.log(lista)
@@ -42,9 +44,9 @@ function getLists() {
                 <td>${nome}</td>
                 <td>Abrir planilha</td>
                 <td>
-                    <i class="bi bi-pencil blue openModal" onclick='abrirModal(${id})'>E</i>
-                    <i class="bi bi-download">D</i>
-                    <i class="bi bi-trash-fill red">R</i>
+                    <i class="bi bi-pencil blue openModal" onclick='abrirModal(${id})'></i>
+                    <i class="bi bi-download"></i>
+                    <i class="bi bi-trash-fill red"></i>
                 </td>
             </tr>
             `;
@@ -73,13 +75,15 @@ var span = document.querySelector('.close');
 
 // Quando o usuário clica no 'x', fecha o modal
 span.addEventListener('click', function() {
-  modal.style.display = 'none'; // Esconde o modal
+  modal.style.display = 'none';
+  aux = 0;
 });
 
 // Quando o usuário clica fora do modal, fecha o modal
 window.addEventListener('click', function(event) {
   if (event.target == modal) {
-    modal.style.display = 'none'; // Esconde o modal
+    modal.style.display = 'none';
+    aux = 0 ;
   }
 });
 
@@ -91,9 +95,11 @@ var aux = 0;
  * @param {int} id 
  */
 function abrirModal(id){
+    getLists();
+
     modal.style.display = 'block';
     let corpoContatos = document.getElementById('contatos');
-    console.log(id)
+    //console.log(id)
  
     var name = '';
     var whats = '';
@@ -101,7 +107,7 @@ function abrirModal(id){
 
     contatosSalvos.forEach(lista => {
         if (lista.id == id) {
-            console.log(lista.name);
+            //console.log(lista.name);
             $('#nomelista input').val(lista.name);
             $('#idLista').val(id)
 
@@ -109,7 +115,7 @@ function abrirModal(id){
 
 
             contatos.forEach(contato => {
-                console.log(contato)
+                //console.log(contato)
                 name = contato.nome;
                 whats = contato.whatsapp;
 
@@ -118,30 +124,31 @@ function abrirModal(id){
                     <td style="display:none"><input name="id" value="${id}"></td>
                     <td><input type='text' name="contacts[${aux}][name]" value="${name}"></td>
                     <td><input type='number' name="contacts[${aux}][whatsapp]" value="${whats}"></td>
-                    <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})">R</i></td>
+                    <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})"></i></td>
                 </tr>
                 `;
 
                 aux = aux + 1;
-                console.log("aux: "+aux)
+                //console.log("aux: "+aux)
             });
 
         }
     });
 
-    $("#add-contact").click(function() {
-
+    $("#add-contact").off("click").on("click", function(event) {
+        event.preventDefault();
         addcontato(id)
+
     })
-    
     
 }
 
 
 /**
- *  Adiciona novo contato na lista
+ *  Adiciona novo input contato
  */
 function addcontato(id) {
+
     let corpoContatos = document.getElementById('contatos');
     
     corpoContatos.innerHTML += `
@@ -149,15 +156,90 @@ function addcontato(id) {
         <td style="display:none"><input name="id" value="${id}"></td>
         <td><input type='text' name="contacts[${aux}][name]" value=""></td>
         <td><input type='number' name="contacts[${aux}][whatsapp]" value=""></td>
-        <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})">R</i></td>
+        <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})"></i></td>
     </tr>
     `;
 
     aux = aux + 1;
 
-    console.log("aux: "+aux)
+    //console.log("aux: "+aux)
 }
 
+/**
+ *  Remove input contato
+ */
 function removecontato(id) {
     $("#"+id+"").remove();
 }
+
+
+/**
+ *  Recupera o resultado do envio do formulário
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona o formulário pelo ID
+    const form = document.getElementById('form-salvar-lista');
+
+    // Adiciona um evento de submissão ao formulário
+    form.addEventListener('submit', function(event) {
+        // Impede o comportamento padrão de envio do formulário
+        event.preventDefault();
+
+        // Obtém os dados do formulário
+        const formData = new FormData(form);
+
+        // Envia uma requisição assíncrona utilizando fetch
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data);
+
+            modal.style.display = 'none';
+
+            if(data.status) {
+                // faz aparecer o componente
+                $("#retorno-lista").css("visibility", "visible");
+
+                // adiciona a cor verde no componente
+                $("#retorno-lista").removeClass("retorno-lista-red");
+                $("#retorno-lista").addClass("retorno-lista-green");
+
+                // mensagem
+                $("#msg").text("Lista atualizada com sucesso!")
+
+                // muda para icone de sucesso
+                $("#retorno-lista i").removeClass("bi bi-x-circle")
+                $("#retorno-lista i").addClass("bi bi-check-circle")
+                
+            } else {
+                // faz aparecer o componente
+                $("#retorno-lista").css("visibility", "visible");
+
+                // adiciona a cor vermelha no componente
+                $("#retorno-lista").removeClass("retorno-lista-green");
+                $("#retorno-lista").addClass("retorno-lista-red");
+
+                // mensagem
+                $("#msg").text("Erro ao atualizar lista.")
+
+                // muda para icone de sucesso
+                $("#retorno-lista i").removeClass("bi bi-check-circle")
+                $("#retorno-lista i").addClass("bi bi-x-circle")
+            }
+
+            setTimeout(function() {
+                $("#retorno-lista").css("visibility", "hidden");
+            }, 3000);
+
+        })
+        .catch(error => {
+            console.error('Erro ao enviar a requisição:', error);
+
+        });
+    });
+});
+

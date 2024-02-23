@@ -33,7 +33,7 @@ class ApiController
 
     public function __construct()
     {
-        $this->uri = "http://34.125.164.134:3000/";
+        $this->uri = "http://34.125.72.253:3000/";
         $this->apiKey = 'chavegabi';
     }
     

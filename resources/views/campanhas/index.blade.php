@@ -58,7 +58,7 @@ if ($user) {
 
 
 <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/campanhas/index.js') }}"></script>
+<script src="{{ asset('js/campanhas/contatos.js') }}"></script>
 
 
 </div>
