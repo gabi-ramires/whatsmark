@@ -20,7 +20,7 @@ if ($user) {
 <h2>Campanhas</h2>
 <div class='row campanhas'>
     <div class='col'>
-        <form class='card' method="POST" action="{{ route('lists.store') }}">
+        <form class='card' method="POST" action="{{ route('criar') }}">
             <h2>Manualmente</h2>
             @csrf
             <label for="name">Nome da Lista:</label>
@@ -39,7 +39,7 @@ if ($user) {
         </form>
     </div>
     <div class='col'>
-        <form class='card' method="POST" action="{{ route('lists.store') }}">
+        <form class='card' method="POST" action="{{ route('criar') }}">
             <h2>Subir arquivo</h2>
             @csrf
             <label for="name">Nome da Lista:</label>

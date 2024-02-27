@@ -46,7 +46,7 @@ function getLists() {
                 <td>
                     <i class="bi bi-pencil blue openModal" onclick='abrirModal(${id})'></i>
                     <i class="bi bi-download"></i>
-                    <i class="bi bi-trash-fill red"></i>
+                    <i class="bi bi-trash-fill red" onclick="removeLista(${id})"></i>
                 </td>
             </tr>
             `;
@@ -212,9 +212,54 @@ function removecontato(id) {
     $("#"+id+"").remove();
 }
 
+/**
+ * Remove uma lista
+ */
+function removeLista(id) {
+
+    // Rota para a função destroy no ListsController
+    const url = `/delete`;
+
+    const requestBody = {
+        id: id
+    };
+
+    // Opções da requisição
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify(requestBody)
+    };
+
+    // Envia a requisição
+    fetch(url, options)
+        .then(response => {
+            // Verifica se a resposta foi bem sucedida
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Erro ao tentar remover a lista');
+            }
+        })
+        .then(data => {
+            // Processa a resposta JSON
+            console.log(data.message); // Exibe a mensagem retornada pelo servidor
+            // Atualize a interface do usuário conforme necessário
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            // Trate o erro conforme necessário
+        });
+
+        getLists();
+}
+
 
 /**
- *  Recupera o resultado do envio do formulário
+ *  Recupera o resultado do envio do formulário "Salvar lista"
  */
 document.addEventListener('DOMContentLoaded', function() {
     // Seleciona o formulário pelo ID
@@ -239,6 +284,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(data);
 
             modal.style.display = 'none';
+            getLists();
+
 
             if(data.status) {
                 // faz aparecer o componente
@@ -265,6 +312,79 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // mensagem
                 $("#msg").text("Erro ao atualizar lista.")
+
+                // muda para icone de sucesso
+                $("#retorno-lista i").removeClass("bi bi-check-circle")
+                $("#retorno-lista i").addClass("bi bi-x-circle")
+            }
+
+            setTimeout(function() {
+                $("#retorno-lista").css("visibility", "hidden");
+            }, 3000);
+
+        })
+        .catch(error => {
+            console.error('Erro ao enviar a requisição:', error);
+
+        });
+    });
+});
+
+
+
+/**
+ *  Recupera o resultado do envio do formulário "Criar lista"
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona o formulário pelo ID
+    const form = document.getElementById('form-criar-lista');
+
+    // Adiciona um evento de submissão ao formulário
+    form.addEventListener('submit', function(event) {
+        // Impede o comportamento padrão de envio do formulário
+        event.preventDefault();
+
+        // Obtém os dados do formulário
+        const formData = new FormData(form);
+
+        // Envia uma requisição assíncrona utilizando fetch
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data);
+
+            modalNovaLista.style.display = 'none';
+            getLists();
+
+            if(data.status) {
+                // faz aparecer o componente
+                $("#retorno-lista").css("visibility", "visible");
+
+                // adiciona a cor verde no componente
+                $("#retorno-lista").removeClass("retorno-lista-red");
+                $("#retorno-lista").addClass("retorno-lista-green");
+
+                // mensagem
+                $("#msg").text("Lista criada com sucesso!")
+
+                // muda para icone de sucesso
+                $("#retorno-lista i").removeClass("bi bi-x-circle")
+                $("#retorno-lista i").addClass("bi bi-check-circle")
+                
+            } else {
+                // faz aparecer o componente
+                $("#retorno-lista").css("visibility", "visible");
+
+                // adiciona a cor vermelha no componente
+                $("#retorno-lista").removeClass("retorno-lista-green");
+                $("#retorno-lista").addClass("retorno-lista-red");
+
+                // mensagem
+                $("#msg").text("Erro ao criar lista.")
 
                 // muda para icone de sucesso
                 $("#retorno-lista i").removeClass("bi bi-check-circle")

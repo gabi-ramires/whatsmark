@@ -16,6 +16,8 @@ class VerifyCsrfToken extends Middleware
         '/verification',
         '/getLists',
         '/lists',
-        '/update'
+        '/update',
+        '/delete',
+        '/criar'
     ];
 }

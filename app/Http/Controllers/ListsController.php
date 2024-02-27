@@ -7,7 +7,7 @@ use App\Models\Lists;
 
 class ListsController extends Controller
 {
-    public function store(Request $request)
+    public function criar(Request $request)
     {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
@@ -41,7 +41,7 @@ class ListsController extends Controller
             $list->save();
     
 
-        return response()->json(['message' => "Lista criada com sucesso"]);
+            return response()->json(['status' => true, 'message' => "Lista criada com sucesso"]);
     }
 
     public function getLists()
@@ -102,6 +102,30 @@ class ListsController extends Controller
 
         }
     }
+
+    public function delete(Request $request)
+    {   
+        $id = $request->id;
+        
+        // Obtém o ID do usuário autenticado
+        $user_id = auth()->id();
+
+        // Procura a lista pelo ID e pelo ID do usuário autenticado
+        $list = Lists::where('id', $id)->where('user_id', $user_id)->first();
+
+        // Verifica se a lista foi encontrada
+        if ($list) {
+            // Remove a lista
+            $list->delete();
+
+            return response()->json(['status' => true, 'message' => "Lista removida com sucesso"]);
+            //return view('campanhas/contatos', ['message' => "Lista removida com sucesso"]);
+        } else {
+            return response()->json(['status' => false, 'message' => "Lista não encontrada"], 404);
+            //return view('campanhas/contatos', ['message' => "Lista não encontrada"]);
+        }
+    }
+
 
 
 

@@ -68,9 +68,11 @@ Route::get('/setup', [SetupWhatsController::class, 'setup'])->name('setup');
 Route::get('/getIdSession', [SetupWhatsController::class, 'getIdSession']);
 
 // Lists
-Route::post('/lists', [ListsController::class, 'store'])->name('lists.store');
+//Route::post('/lists', [ListsController::class, 'store'])->name('lists.store');
+Route::post('/criar', [ListsController::class, 'criar'])->name('lists.criar');
 Route::post('/update', [ListsController::class, 'update'])->name('lists.update');
 Route::post('/getLists', [ListsController::class, 'getLists']);
+Route::delete('/delete', [ListsController::class, 'delete']);
 
 
 

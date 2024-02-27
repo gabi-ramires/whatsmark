@@ -77,7 +77,7 @@ if ($user) {
     <!-- MODAL NOVA LISTA-->
     <div id="modalNovaLista" class="modal">
         <div class="modal-content card">
-        <form  method="POST" action="{{ route('lists.store') }}">
+        <form   id="form-criar-lista" method="POST" action="{{ route('lists.criar') }}">
         <div class="nome-lista">
             <span class="close2" data-dismiss="modal">&times;</span>
         </div>
