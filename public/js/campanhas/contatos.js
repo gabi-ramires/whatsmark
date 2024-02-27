@@ -64,14 +64,16 @@ var btns = document.querySelectorAll('.openModal');
 
 // Seleciona o modal
 var modal = document.getElementById('myModal');
+var modalNovaLista = document.getElementById('modalNovaLista');
 
 // Adiciona um event listener para cada botão
 btns.forEach(btn => {
-    abrirModal();
+   // abrirModal();
 });
 
 // Seleciona o elemento de fechar do modal
 var span = document.querySelector('.close');
+var span2 = document.querySelector('.close2');
 
 // Quando o usuário clica no 'x', fecha o modal
 span.addEventListener('click', function() {
@@ -79,22 +81,39 @@ span.addEventListener('click', function() {
   aux = 0;
 });
 
+span2.addEventListener('click', function() {
+    modalNovaLista.style.display = 'none';
+    aux = 0;
+  });
+
 // Quando o usuário clica fora do modal, fecha o modal
 window.addEventListener('click', function(event) {
-  if (event.target == modal) {
+  if (event.target == modal || event.target == modalNovaLista) {
     modal.style.display = 'none';
+    modalNovaLista.style.display = 'none';
     aux = 0 ;
   }
 });
 
-
-
 var aux = 0;
+var aux2 = 0;
+function abrirModalNovaLista(){
+
+    modalNovaLista.style.display = 'block';
+
+    $("#add-contact2").off("click").on("click", function(event) {
+        event.preventDefault();
+        addcontato2()
+
+    })
+}
+
+
 /**
  *  Abre modal da lista selecionada
  * @param {int} id 
  */
-function abrirModal(id){
+function abrirModal(id=false){
     getLists();
 
     modal.style.display = 'block';
@@ -140,6 +159,7 @@ function abrirModal(id){
         addcontato(id)
 
     })
+
     
 }
 
@@ -150,19 +170,39 @@ function abrirModal(id){
 function addcontato(id) {
 
     let corpoContatos = document.getElementById('contatos');
-    
-    corpoContatos.innerHTML += `
+
+    corpoContatos.insertAdjacentHTML('beforeend', `
     <tr id="${aux}" class="contact">
         <td style="display:none"><input name="id" value="${id}"></td>
         <td><input type='text' name="contacts[${aux}][name]" value=""></td>
         <td><input type='number' name="contacts[${aux}][whatsapp]" value=""></td>
         <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux})"></i></td>
     </tr>
-    `;
+    `);
 
     aux = aux + 1;
 
     //console.log("aux: "+aux)
+}
+
+/**
+ *  Adiciona novo input contato
+ */
+function addcontato2() {
+
+    let corpoContatos = document.getElementById('contatos2');
+    aux2 ++
+    
+    corpoContatos.insertAdjacentHTML('beforeend', `
+    <tr id="${aux2}" class="contact">
+        <td style="display:none"><input name="id" value="${aux2}"></td>
+        <td><input type='text' name="contacts[${aux2}][name]" placeholder="Nome" required></td>
+        <td><input type='number' name="contacts[${aux2}][whatsapp]"  placeholder="55 44 1234-5678" required></td>
+        <td><i class="bi bi-trash-fill red" onclick="removecontato(${aux2})"></i></td>
+    </tr>
+    `);
+
+    console.log("aux2: "+aux2)
 }
 
 /**
