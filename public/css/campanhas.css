@@ -162,3 +162,148 @@ h2 {
   border: green;
   filter: brightness(1.3);
 }
+
+.templates {
+  display: flex !important;
+  /* Estilos do celular */
+  /* Estilos da tela do celular */
+  /* Estilos dos botões do celular */
+  /* Estilos do botão home */
+  /* Estilos do botão de volume */
+  /* Estilos do botão de energia */
+}
+.templates textarea {
+  width: 400px !important;
+  height: 80px;
+}
+.templates input {
+  width: 150px;
+}
+.templates .emojis {
+  border: 1px solid red;
+  position: fixed;
+  width: 500px;
+}
+.templates .options-emojis span {
+  border: 1px solid gray;
+  background-color: white;
+}
+.templates .whats {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+}
+.templates .whats .header {
+  background-color: #128C7E;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+.templates .whats .message-area {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.templates .whats .message {
+  background-color: #DCF8C6;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 70%;
+}
+.templates .whats .message.received {
+  background-color: #fff;
+  color: #000;
+  align-self: flex-start;
+}
+.templates .whats .message.sent {
+  background-color: #DCF8C6;
+  color: #000;
+  align-self: flex-end;
+}
+.templates .whats .message-input {
+  display: flex;
+  background-color: #fff;
+  padding: 10px;
+}
+.templates .whats .message-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.templates .whats .message-input button {
+  background-color: #128C7E;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  cursor: pointer;
+  padding: 10px;
+}
+.templates .whats i {
+  transform: rotate(45deg) !important;
+}
+.templates .whats input {
+  color: black !important;
+}
+.templates .cellphone {
+  width: 250px;
+  height: 400px;
+  margin-left: 20px;
+  background-color: #000;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid black;
+  /* Estilização da barra de rolagem */
+}
+.templates .cellphone ::-webkit-scrollbar {
+  width: 8px; /* largura da barra de rolagem */
+}
+.templates .cellphone ::-webkit-scrollbar-track {
+  background: #f1f1f1; /* cor de fundo da barra de rolagem */
+}
+.templates .cellphone ::-webkit-scrollbar-thumb {
+  background: #b0afaf; /* cor do preenchimento da barra de rolagem */
+  border-radius: 10px; /* borda arredondada da barra de rolagem */
+}
+.templates .cellphone ::-webkit-scrollbar-thumb:hover {
+  background: #555; /* cor do preenchimento da barra de rolagem ao passar o mouse */
+}
+.templates .screen {
+  width: 100%;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 15px;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+.templates .button {
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  border-radius: 50%;
+  position: absolute;
+}
+.templates .home {
+  bottom: 10px;
+  left: calc(50% - 10px);
+}
+.templates .volume {
+  top: 10px;
+  left: 10px;
+}
+.templates .power {
+  top: 10px;
+  right: 10px;
+}

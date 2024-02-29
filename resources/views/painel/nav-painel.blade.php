@@ -38,7 +38,7 @@
                             <i class="bi bi-send"></i>Campanhas
                             <ul class="submenu">
                                 <li><i class="bi bi-person"></i><a href="/contatos">Contatos</a></li>
-                                <li><i class="bi bi-journal-check"></i><a href="#">Templates</a></li>
+                                <li><i class="bi bi-journal-check"></i><a href="/templates">Templates</a></li>
                             </ul>
                         </a>
                     </li>

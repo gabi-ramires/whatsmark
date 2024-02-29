@@ -1,4 +1,5 @@
 
+
 var contatosSalvos = [];
 getLists()
 
@@ -28,6 +29,7 @@ function getLists() {
 
         data.forEach(lista => {
             console.log(lista)
+
             let id = lista.id;
             let nome = lista.name;
             let contatos = JSON.parse(lista.contacts);
@@ -45,7 +47,7 @@ function getLists() {
                 <td>Abrir planilha</td>
                 <td>
                     <i class="bi bi-pencil blue openModal" onclick='abrirModal(${id})'></i>
-                    <i class="bi bi-download"></i>
+                    <a id="download-${id}"><i class="bi bi-download" onclick='baixaCSV(${id})'></i></a>
                     <i class="bi bi-trash-fill red" onclick="removeLista(${id})"></i>
                 </td>
             </tr>
@@ -55,8 +57,11 @@ function getLists() {
     .catch(error => {
       console.log(error)
     });
+
     
 }
+
+
 
 
 // Seleciona todos os botões que devem abrir o modal
@@ -217,44 +222,54 @@ function removecontato(id) {
  */
 function removeLista(id) {
 
-    // Rota para a função destroy no ListsController
-    const url = `/delete`;
+    let nomeLista = "";
 
-    const requestBody = {
-        id: id
-    };
+    contatosSalvos.forEach(lista => {
+        if(id == lista.id) {
+            nomeLista = lista.name
+        }
+    });
 
-    // Opções da requisição
-    const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-    };
+    if(confirm(`Você tem certeza que quer deletar a lista ${nomeLista}?`)){
+        const requestBody = {
+            id: id
+        };
+    
+        // Opções da requisição
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify(requestBody)
+        };
+    
+        // Envia a requisição
+        fetch('/delete', options)
+            .then(response => {
+                // Verifica se a resposta foi bem sucedida
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro ao tentar remover a lista');
+                }
+            })
+            .then(data => {
+                // Processa a resposta JSON
+                console.log(data.message); // Exibe a mensagem retornada pelo servidor
+                // Atualize a interface do usuário conforme necessário
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                // Trate o erro conforme necessário
+            });
+    
+            getLists();
+    } else {
 
-    // Envia a requisição
-    fetch(url, options)
-        .then(response => {
-            // Verifica se a resposta foi bem sucedida
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Erro ao tentar remover a lista');
-            }
-        })
-        .then(data => {
-            // Processa a resposta JSON
-            console.log(data.message); // Exibe a mensagem retornada pelo servidor
-            // Atualize a interface do usuário conforme necessário
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            // Trate o erro conforme necessário
-        });
-
-        getLists();
+    }
+    
 }
 
 
@@ -403,3 +418,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+/**
+ * Função para fazer download da lista de contatos em csv
+ * @param {int} id 
+ */
+function baixaCSV(id) {
+    console.log(contatosSalvos);
+    console.log(id);
+
+    var link = document.getElementById(`download-${id}`);
+    var csv = "";
+    var nomeLista = "";
+
+    contatosSalvos.forEach(lista => {
+        if (id == lista.id) {
+            // Convertendo o array de objetos em CSV usando a biblioteca Papaparse
+            csv = Papa.unparse(lista.contacts)
+
+            nomeLista = lista.name
+        }
+    });
+
+    // Criando o URI de dados para o arquivo CSV
+    let csvData = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+
+
+    // Modificando o atributo href para apontar para os dados CSV
+    link.href = csvData;
+
+    // Definindo o nome do arquivo para download
+    link.download = `${nomeLista}.csv`;
+
+}

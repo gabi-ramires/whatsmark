@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Borda de um Celular</title>
+<style>
+    /* Estilos gerais */
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    
+    /* Estilos do celular */
+    .cellphone {
+        width: 200px;
+        height: 400px;
+        background-color: #000;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Estilos da tela do celular */
+    .screen {
+        width: 100%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 15px;
+        position: absolute;
+        top: 10%;
+        left: 0;
+    }
+    
+    /* Estilos dos botões do celular */
+    .button {
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        position: absolute;
+    }
+    
+    /* Estilos do botão home */
+    .home {
+        bottom: 10px;
+        left: calc(50% - 10px);
+    }
+    
+    /* Estilos do botão de volume */
+    .volume {
+        top: 10px;
+        left: 10px;
+    }
+    
+    /* Estilos do botão de energia */
+    .power {
+        top: 10px;
+        right: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="cellphone">
+    <div class="screen"></div>
+    <div class="button home"></div>
+</div>
+
+</body>
+</html>

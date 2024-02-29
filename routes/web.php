@@ -49,6 +49,10 @@ Route::get('/contatos', function () {
     return view('campanhas/contatos');
 });
 
+Route::get('/templates', function () {
+    return view('campanhas/templates');
+});
+
 Route::get('/meus-planos', function () {
     return view('painel/meus-planos');
 });

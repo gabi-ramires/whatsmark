@@ -112,12 +112,14 @@ if ($user) {
             <button  class='submit' type="submit" >Criar Lista</button>
         </form>
         </div>
+
     </div>
 
-    
-
+    <div id='btns'>
+    </div>
 <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/campanhas/contatos.js') }}"></script>
+<script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 
 
 

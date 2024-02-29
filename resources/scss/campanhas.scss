@@ -216,3 +216,168 @@ h2 {
 
 
 }
+
+.templates {
+
+    display: flex !important;
+    textarea {
+        width: 400px!important;
+        height: 80px;
+    }
+
+    input {
+        width: 150px;
+    }
+
+    .emojis {
+        border: 1px solid red;
+        position:fixed;
+        width: 500px;
+
+    }
+    .options-emojis span {
+        border: 1px solid gray;
+        background-color: white;
+    }
+
+    .whats {
+        
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        width: 100%;
+        height: 100%;
+        display: flex !important;
+        flex-direction: column;
+        
+        .header {
+            background-color: #128C7E;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .message-area {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+        }
+        .message {
+            background-color: #DCF8C6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            max-width: 70%;
+        }
+        .message.received {
+            background-color: #fff;
+            color: #000;
+            align-self: flex-start;
+        }
+        .message.sent {
+            background-color: #DCF8C6;
+            color: #000;
+            align-self: flex-end;
+        }
+        .message-input {
+            display: flex;
+            background-color: #fff;
+            padding: 10px;
+        }
+        .message-input input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .message-input button {
+            background-color: #128C7E;
+            color: #fff;
+            border: none;
+            outline: none;
+            border-radius: 100%;
+            cursor: pointer;
+            padding: 10px
+        }
+
+        i {
+            transform: rotate(45deg) !important
+        }
+
+        input {
+         color: black !important;
+        }
+    }
+
+        /* Estilos do celular */
+        .cellphone {
+            width: 250px;
+            height: 400px;
+            margin-left: 20px;
+            background-color: #000;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid black;;
+
+            /* Estilização da barra de rolagem */
+            ::-webkit-scrollbar {
+                width: 8px; /* largura da barra de rolagem */
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1; /* cor de fundo da barra de rolagem */
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #b0afaf; /* cor do preenchimento da barra de rolagem */
+                border-radius: 10px; /* borda arredondada da barra de rolagem */
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555; /* cor do preenchimento da barra de rolagem ao passar o mouse */
+            }
+
+        }
+        
+        /* Estilos da tela do celular */
+        .screen {
+            width: 100%;
+            height: 80%;
+            background-color: #fff;
+            border-radius: 15px;
+            position: absolute;
+            top: 10%;
+            left: 0;
+        }
+        
+        /* Estilos dos botões do celular */
+        .button {
+            width: 20px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        /* Estilos do botão home */
+        .home {
+            bottom: 10px;
+            left: calc(50% - 10px);
+        }
+        
+        /* Estilos do botão de volume */
+        .volume {
+            top: 10px;
+            left: 10px;
+        }
+        
+        /* Estilos do botão de energia */
+        .power {
+            top: 10px;
+            right: 10px;
+        }
+}
