@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\CronController;
+use App\Http\Controllers\SetupWhatsController;
+
+use function Ramsey\Uuid\v1;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,7 @@ Route::get('/session/start/{sessionId}', [ApiController::class, 'startNewSession
 Route::get('/session/status/{sessionId}', [ApiController::class, 'getStatusSession']);
 Route::get('/session/qr/{sessionId}/image', [ApiController::class, 'carregaQrCode']);
 Route::post('/client/sendMessage/{sessionId}', [ApiController::class, 'sendMessage']);
+Route::post('/client/sendMessageAgendado/{sessionId}', [ApiController::class, 'sendMessageAgendado']);
 
 
 
@@ -32,9 +37,10 @@ class ApiController
     public $apiKey;
 
     public function __construct()
-    {
-        $this->uri = "http://34.125.72.253:3000/";
+    {   
+        $this->uri = "http://34.125.146.115:3000/";
         $this->apiKey = 'chavegabi';
+
     }
     
     public function startNewSession($sessionId)
@@ -142,6 +148,29 @@ class ApiController
         curl_close($ch);
     
         return $response;
+    }
+
+    public function sendMessageAgendado($sessionId, Request $request)
+    { 
+        $cron = new CronController();
+
+        $msg = $request->content;
+        $contatos = $request->lista;
+        $data = $request->data;
+
+        // Extrai a hora e os minutos da string
+        list($ano, $mes, $dia, $hora, $minuto) = sscanf($data, "%d-%d-%dT%d:%d");
+
+        $contatos = json_decode($contatos);
+
+        //$comando = 'crontab -l | { cat; echo "43 16 * * * /var/www/html/sendMessageAgendado.sh \"'.$sessionId.'\" \"'.$msg.'\" "; } | crontab -';
+
+        $comando = 'crontab -l | { cat; echo "'.$minuto.' '.$hora.' '.$dia.' '.$mes.' * php /var/www/html/sendMessageAgendado.php \"'.$sessionId.'\" \"'.$msg.'\" \"'.$contatos.'\" "; } | crontab -';
+
+        $res = $cron->cron($comando);
+
+        return response()->json(['status' => true, 'message' => "Envio agendado com sucesso"]);
+        
     }
 
 }

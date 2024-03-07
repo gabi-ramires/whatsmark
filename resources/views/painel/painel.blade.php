@@ -32,7 +32,7 @@ if ($user) {
             <div class="textoComponente" >
                 <span>Tudo pronto, agora você já pode criar suas companhas!</span>
             </div>
-            <a href="/campanhas"><button>Começar</button></a>
+            <a href="/nova-campanha"><button>Começar</button></a>
         </div>
 
 

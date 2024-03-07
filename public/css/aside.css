@@ -1,12 +1,14 @@
+@charset "UTF-8";
 /* Estilos para o menu */
 aside {
   display: flex;
   flex-direction: column;
   background-color: #EF780D;
-  width: 200px;
+  width: 210px;
   height: 89vh;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 aside ul {
   display: flex;
@@ -26,28 +28,33 @@ aside ul li {
   padding-top: 10px;
   padding-bottom: 5px;
 }
-aside ul li i {
+aside ul i {
   color: white;
   padding-right: 10px;
-}
-aside ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-}
-aside ul li a:hover {
-  color: #333;
-}
-aside ul li a:hover i {
-  color: #333;
 }
 aside .submenu {
   display: none;
   position: static;
   left: 100%;
   top: 0;
-  background-color: #EF780D;
+}
+aside .submenu a:hover {
+  color: white;
+  display: block;
+  background-color: #884103 !important;
 }
 aside .submenu-item:hover .submenu {
   display: block;
+}
+aside a:hover {
+  color: white;
+  background-color: #884103 !important;
+}
+aside .bi-chevron-right,
+aside .bi-chevron-down {
+  position: absolute;
+  right: 10px; /* Ajuste o valor conforme necessário */
+}
+aside .submenu-clicked {
+  background-color: #884103; /* Cor de fundo clicada */
 }

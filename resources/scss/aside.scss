@@ -4,10 +4,11 @@
         display: flex;
         flex-direction: column;
         background-color: #EF780D;
-        width: 200px;
+        width: 210px;
         height: 89vh;
         margin: 0;
         padding: 0;
+        position: relative;
 
         ul {
             display: flex;
@@ -20,6 +21,7 @@
             padding-left: 10px;
             padding-top: 10px;
 
+
             li {
                 display:block;
                 margin-right: 20px;
@@ -27,44 +29,53 @@
                 padding-top: 10px;
                 padding-bottom: 5px;
 
-                i {
-                    color: white;
-                    padding-right: 10px;
-
-                }
-
-                a {
-                    color: white;
-                    text-decoration: none;
-                    font-size: 18px;
-
-                    &:hover{
-                        color:#333;
-
-                        i {
-                            color:#333;
-                        }
-                    }
-
-                }
-                
             }
-        }  
+
+
+            i {
+                color: white;
+                padding-right: 10px;
+
+            }
+        }
+
 
         .submenu {
             display: none;
             position: static;
             left: 100%;
             top: 0;
-            background-color: #EF780D;
-            
+
+            a {
+                &:hover{
+                color: white;
+                display: block;
+                background-color: #884103 !important;
+                }
+            }
+ 
         }
         
         .submenu-item:hover .submenu {
             display: block;
+
+        }
+
+        a:hover{
+            color: white;
+            background-color: #884103 !important;
+        }
+
+        .bi-chevron-right,
+        .bi-chevron-down {
+            position: absolute;
+            right: 10px; /* Ajuste o valor conforme necessário */
+        }
+
+        .submenu-clicked {
+            background-color: #884103; /* Cor de fundo clicada */
         }
         
     }
-
 
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerificationsController;
 use App\Http\Controllers\SetupWhatsController;
 use App\Http\Controllers\ListsController;
+use App\Http\Controllers\CronController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +50,8 @@ Route::get('/contatos', function () {
     return view('campanhas/contatos');
 });
 
-Route::get('/templates', function () {
-    return view('campanhas/templates');
+Route::get('/nova-campanha', function () {
+    return view('campanhas/nova-campanha');
 });
 
 Route::get('/meus-planos', function () {
@@ -77,6 +78,9 @@ Route::post('/criar', [ListsController::class, 'criar'])->name('lists.criar');
 Route::post('/update', [ListsController::class, 'update'])->name('lists.update');
 Route::post('/getLists', [ListsController::class, 'getLists']);
 Route::delete('/delete', [ListsController::class, 'delete']);
+
+//Cron
+Route::post('/executar-cron', [CronController::class, 'cron']);
 
 
 

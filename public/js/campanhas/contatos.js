@@ -230,7 +230,7 @@ function removeLista(id) {
         }
     });
 
-    if(confirm(`Você tem certeza que quer deletar a lista ${nomeLista}?`)){
+    if(confirm(`Confirma a exclusão da lista ${nomeLista}?`)){
         const requestBody = {
             id: id
         };

@@ -163,7 +163,7 @@ h2 {
   filter: brightness(1.3);
 }
 
-.templates {
+.nova-campanha {
   display: flex !important;
   /* Estilos do celular */
   /* Estilos da tela do celular */
@@ -172,23 +172,39 @@ h2 {
   /* Estilos do botão de volume */
   /* Estilos do botão de energia */
 }
-.templates textarea {
+.nova-campanha textarea {
   width: 400px !important;
-  height: 80px;
+  height: 140px;
 }
-.templates input {
+.nova-campanha input {
   width: 150px;
 }
-.templates .emojis {
-  border: 1px solid red;
-  position: fixed;
+.nova-campanha select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  width: 100px;
+}
+.nova-campanha label {
+  margin-left: 5px;
+}
+.nova-campanha .emojis {
+  position: relative;
   width: 500px;
 }
-.templates .options-emojis span {
+.nova-campanha .emoji, .nova-campanha .options-emojis {
+  cursor: pointer !important;
+  margin-top: 3px !important;
+  margin-bottom: 3px !important;
+  font-size: larger !important;
+}
+.nova-campanha .options-emojis span {
   border: 1px solid gray;
   background-color: white;
 }
-.templates .whats {
+.nova-campanha .whats {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -198,41 +214,41 @@ h2 {
   display: flex !important;
   flex-direction: column;
 }
-.templates .whats .header {
+.nova-campanha .whats .header {
   background-color: #128C7E;
   color: #fff;
   padding: 10px 20px;
   text-align: center;
 }
-.templates .whats .message-area {
+.nova-campanha .whats .message-area {
   padding: 20px;
   display: flex;
   flex-direction: column;
   overflow: auto;
 }
-.templates .whats .message {
+.nova-campanha .whats .message {
   background-color: #DCF8C6;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
   max-width: 70%;
 }
-.templates .whats .message.received {
+.nova-campanha .whats .message.received {
   background-color: #fff;
   color: #000;
   align-self: flex-start;
 }
-.templates .whats .message.sent {
+.nova-campanha .whats .message.sent {
   background-color: #DCF8C6;
   color: #000;
   align-self: flex-end;
 }
-.templates .whats .message-input {
+.nova-campanha .whats .message-input {
   display: flex;
   background-color: #fff;
   padding: 10px;
 }
-.templates .whats .message-input input {
+.nova-campanha .whats .message-input input {
   flex: 1;
   border: none;
   outline: none;
@@ -240,7 +256,7 @@ h2 {
   border-radius: 20px;
   margin-right: 10px;
 }
-.templates .whats .message-input button {
+.nova-campanha .whats .message-input button {
   background-color: #128C7E;
   color: #fff;
   border: none;
@@ -249,13 +265,13 @@ h2 {
   cursor: pointer;
   padding: 10px;
 }
-.templates .whats i {
+.nova-campanha .whats i {
   transform: rotate(45deg) !important;
 }
-.templates .whats input {
+.nova-campanha .whats input {
   color: black !important;
 }
-.templates .cellphone {
+.nova-campanha .cellphone {
   width: 250px;
   height: 400px;
   margin-left: 20px;
@@ -266,20 +282,20 @@ h2 {
   border: 1px solid black;
   /* Estilização da barra de rolagem */
 }
-.templates .cellphone ::-webkit-scrollbar {
+.nova-campanha .cellphone ::-webkit-scrollbar {
   width: 8px; /* largura da barra de rolagem */
 }
-.templates .cellphone ::-webkit-scrollbar-track {
+.nova-campanha .cellphone ::-webkit-scrollbar-track {
   background: #f1f1f1; /* cor de fundo da barra de rolagem */
 }
-.templates .cellphone ::-webkit-scrollbar-thumb {
+.nova-campanha .cellphone ::-webkit-scrollbar-thumb {
   background: #b0afaf; /* cor do preenchimento da barra de rolagem */
   border-radius: 10px; /* borda arredondada da barra de rolagem */
 }
-.templates .cellphone ::-webkit-scrollbar-thumb:hover {
+.nova-campanha .cellphone ::-webkit-scrollbar-thumb:hover {
   background: #555; /* cor do preenchimento da barra de rolagem ao passar o mouse */
 }
-.templates .screen {
+.nova-campanha .screen {
   width: 100%;
   height: 80%;
   background-color: #fff;
@@ -288,22 +304,89 @@ h2 {
   top: 10%;
   left: 0;
 }
-.templates .button {
+.nova-campanha .button {
   width: 20px;
   height: 20px;
   background-color: #333;
   border-radius: 50%;
   position: absolute;
 }
-.templates .home {
+.nova-campanha .home {
   bottom: 10px;
   left: calc(50% - 10px);
 }
-.templates .volume {
+.nova-campanha .volume {
   top: 10px;
   left: 10px;
 }
-.templates .power {
+.nova-campanha .power {
   top: 10px;
   right: 10px;
+}
+.nova-campanha .retorno-envio-green {
+  display: flex;
+  border: 1px solid rgb(91, 193, 91);
+  background-color: rgb(82, 152, 76);
+  border-radius: 12px;
+  justify-content: center;
+  align-self: center;
+  padding: 5px 0 5px 0;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.nova-campanha .retorno-envio-green span {
+  color: rgb(3, 48, 3);
+}
+.nova-campanha .retorno-envio-green i {
+  padding-right: 10px;
+  color: rgb(3, 48, 3);
+}
+.nova-campanha .retorno-envio-red {
+  display: flex;
+  border: 1px solid rgb(107, 3, 3);
+  background-color: rgb(216, 129, 129);
+  border-radius: 12px;
+  width: 300px;
+  justify-content: center;
+  align-self: center;
+  padding: 5px 0 5px 0;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+.nova-campanha .retorno-envio-red span {
+  color: rgb(107, 3, 3);
+}
+.nova-campanha .retorno-envio-red i {
+  padding-right: 10px;
+  color: rgb(107, 3, 3);
+}
+.nova-campanha #submit, .nova-campanha #envio-agendado {
+  cursor: pointer;
+  background-color: #EF780D;
+}
+.nova-campanha #submit:hover, .nova-campanha #envio-agendado:hover {
+  filter: brightness(1.4);
+  background-color: #EF780D;
+}
+.nova-campanha .agendar {
+  cursor: pointer;
+  background-color: rgba(21, 20, 20, 0.522);
+  text-align: center;
+  width: 100px;
+}
+.nova-campanha .agendar:hover {
+  filter: brightness(1.4);
+}
+.nova-campanha #calendario {
+  background-color: rgba(21, 20, 20, 0.522);
+  border: 1px solid gray;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 10px;
+}
+.nova-campanha #calendario input {
+  width: -moz-min-content;
+  width: min-content;
 }

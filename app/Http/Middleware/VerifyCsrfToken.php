@@ -18,6 +18,7 @@ class VerifyCsrfToken extends Middleware
         '/lists',
         '/update',
         '/delete',
-        '/criar'
+        '/criar',
+        '/executar-cron'
     ];
 }

@@ -32,17 +32,15 @@
     <div class='row'>
             <aside>
                 <ul>
-                    <li><a href="/painel"><i class="bi bi-house-door-fill"></i>Inicio</a></li>
-                    <li><a href="/tutorial"><i class="bi bi-rocket-takeoff"></i></i>Setup</a></li>
-                    <li class="submenu-item"><a href="/campanhas">
-                            <i class="bi bi-send"></i>Campanhas
+                    <a href="/painel"><li><i class="bi bi-house-door-fill"></i>Inicio</li></a>
+                    <a href="/tutorial"><li><i class="bi bi-rocket-takeoff"></i>Setup</li></a>
+                    <a href="#" class="submenu-item">
+                        <li><i class="bi bi-send"></i>Campanhas<i id='flecha' class="bi bi-chevron-right"></i></li></a>
                             <ul class="submenu">
-                                <li><i class="bi bi-person"></i><a href="/contatos">Contatos</a></li>
-                                <li><i class="bi bi-journal-check"></i><a href="/templates">Templates</a></li>
+                                <a href="/nova-campanha"><li><i class="bi bi-plus-lg"></i>Campanha</li></a>
+                                <a href="/contatos"><li><i class="bi bi-person"></i>Contatos</li></a>
                             </ul>
-                        </a>
-                    </li>
-                    <li><a href="/meus-planos"><i class="bi bi-stars"></i>Meus Planos</a></li>
+                    <a href="/meus-planos"><li><i class="bi bi-stars"></i>Meus Planos</li></a>
                 </ul>
             </aside>
         <div class="col">
@@ -56,6 +54,13 @@
     <footer>
         &copy; 2024 WhatsMark - Todos os direitos reservados
     </footer>
-
+<script>
+    $(".submenu-item").click(function(){
+        $(".submenu").toggle();
+        $(this).toggleClass("submenu-clicked");
+        $(this).find("#flecha").toggleClass("bi-chevron-down bi-chevron-right");
+    })
+</script>
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
 </body>
 </html>

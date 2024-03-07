@@ -217,31 +217,51 @@ h2 {
 
 }
 
-.templates {
+.nova-campanha {
 
     display: flex !important;
+
     textarea {
         width: 400px!important;
-        height: 80px;
+        height: 140px;
     }
 
     input {
         width: 150px;
     }
 
-    .emojis {
-        border: 1px solid red;
-        position:fixed;
-        width: 500px;
+    select {
+        padding: 5px 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        width: 100px;
+    }
 
+    label {
+        margin-left: 5px;
+    }
+
+    .emojis {
+        position:relative;
+        width: 500px;
+    }
+
+    .emoji, .options-emojis{
+        cursor: pointer !important;
+        margin-top: 3px !important;
+        margin-bottom: 3px !important;
+        font-size: larger !important;
+        
     }
     .options-emojis span {
         border: 1px solid gray;
         background-color: white;
+
     }
 
     .whats {
-        
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -312,72 +332,152 @@ h2 {
         }
     }
 
-        /* Estilos do celular */
-        .cellphone {
-            width: 250px;
-            height: 400px;
-            margin-left: 20px;
-            background-color: #000;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid black;;
+    /* Estilos do celular */
+    .cellphone {
+        width: 250px;
+        height: 400px;
+        margin-left: 20px;
+        background-color: #000;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid black;;
 
-            /* Estilização da barra de rolagem */
-            ::-webkit-scrollbar {
-                width: 8px; /* largura da barra de rolagem */
-            }
+        /* Estilização da barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 8px; /* largura da barra de rolagem */
+        }
 
-            ::-webkit-scrollbar-track {
-                background: #f1f1f1; /* cor de fundo da barra de rolagem */
-            }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* cor de fundo da barra de rolagem */
+        }
 
-            ::-webkit-scrollbar-thumb {
-                background: #b0afaf; /* cor do preenchimento da barra de rolagem */
-                border-radius: 10px; /* borda arredondada da barra de rolagem */
-            }
+        ::-webkit-scrollbar-thumb {
+            background: #b0afaf; /* cor do preenchimento da barra de rolagem */
+            border-radius: 10px; /* borda arredondada da barra de rolagem */
+        }
 
-            ::-webkit-scrollbar-thumb:hover {
-                background: #555; /* cor do preenchimento da barra de rolagem ao passar o mouse */
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* cor do preenchimento da barra de rolagem ao passar o mouse */
+        }
 
+    }
+    
+    /* Estilos da tela do celular */
+    .screen {
+        width: 100%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 15px;
+        position: absolute;
+        top: 10%;
+        left: 0;
+    }
+    
+    /* Estilos dos botões do celular */
+    .button {
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        position: absolute;
+    }
+    
+    /* Estilos do botão home */
+    .home {
+        bottom: 10px;
+        left: calc(50% - 10px);
+    }
+    
+    /* Estilos do botão de volume */
+    .volume {
+        top: 10px;
+        left: 10px;
+    }
+    
+    /* Estilos do botão de energia */
+    .power {
+        top: 10px;
+        right: 10px;
+    }
+
+    .retorno-envio-green {
+        display: flex;
+        border: 1px solid rgb(91, 193, 91);
+        background-color: rgb(82, 152, 76);
+        border-radius: 12px;
+        justify-content: center;
+        align-self: center;
+        padding: 5px 0 5px 0;
+        margin-bottom: 20px;
+        margin-top: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        span{
+            color: rgb(3, 48, 3);
         }
-        
-        /* Estilos da tela do celular */
-        .screen {
-            width: 100%;
-            height: 80%;
-            background-color: #fff;
-            border-radius: 15px;
-            position: absolute;
-            top: 10%;
-            left: 0;
+
+        i {
+            padding-right: 10px;
+            color: rgb(3, 48, 3);
         }
-        
-        /* Estilos dos botões do celular */
-        .button {
-            width: 20px;
-            height: 20px;
-            background-color: #333;
-            border-radius: 50%;
-            position: absolute;
+    }
+
+    .retorno-envio-red {
+        display: flex;
+        border: 1px solid rgb(107, 3, 3);
+        background-color: rgb(216, 129, 129);
+        border-radius: 12px;
+        width: 300px;
+        justify-content: center;
+        align-self: center;
+        padding: 5px 0 5px 0;
+        margin-bottom: 20px;
+        margin-top: 0;
+
+        span{
+            color: rgb(107, 3, 3);
         }
-        
-        /* Estilos do botão home */
-        .home {
-            bottom: 10px;
-            left: calc(50% - 10px);
+
+        i {
+            padding-right: 10px;
+            color: rgb(107, 3, 3);
         }
-        
-        /* Estilos do botão de volume */
-        .volume {
-            top: 10px;
-            left: 10px;
+    }
+
+    #submit, #envio-agendado{
+        cursor: pointer;
+        background-color: #EF780D;  
+
+        &:hover{
+            filter: brightness(1.4);
+            background-color: #EF780D;            
         }
-        
-        /* Estilos do botão de energia */
-        .power {
-            top: 10px;
-            right: 10px;
+
+    }
+
+    .agendar {
+        cursor: pointer;
+        background-color: rgba(21, 20, 20, 0.522);
+        text-align: center;
+        width:100px;
+
+        &:hover{
+            filter: brightness(1.4);
+         
         }
+    }
+
+    #calendario {
+        background-color: rgba(21, 20, 20, 0.522);
+        border: 1px solid gray;
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 10px;
+
+        input {
+            width: min-content;
+        }
+    }
 }
