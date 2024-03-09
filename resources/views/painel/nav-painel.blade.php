@@ -1,3 +1,13 @@
+<?php
+// Verifica se usuário tem plano contratado
+    use Illuminate\Support\Facades\DB;
+
+    $user = Auth::user();
+    $temContrato = DB::table('contratos')
+    ->where('user_id', $user->id)
+    ->exists();
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -33,6 +43,7 @@
                 <ul>
                     <a href="/painel"><li><i class="bi bi-house-door-fill"></i>Inicio</li></a>
                     <a href="/tutorial"><li><i class="bi bi-rocket-takeoff"></i>Setup</li></a>
+                    <?php if($temContrato): ?>
                     <a id="submenu" href="#" class="submenu-item">
                         <li><i class="bi bi-send"></i>Campanhas<i id='flecha' class="bi bi-chevron-right"></i></li></a>
                             <ul class="submenu">
@@ -40,6 +51,7 @@
                                 <a href="/contatos"><li><i class="bi bi-person"></i>Contatos</li></a>
                                 <a href="/dashboard"><li><i class="bi bi-graph-up-arrow"></i>Dashboard</li></a>
                             </ul>
+                    <?php endif; ?>
                     <a href="/meus-planos"><li><i class="bi bi-stars"></i>Meus Planos</li></a>
                 </ul>
             </aside>

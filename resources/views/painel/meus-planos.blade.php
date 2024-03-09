@@ -19,7 +19,6 @@
     ->exists();
 
 
-
     $contratos = DB::table('contratos')
     ->where('user_id', $user->id)
     ->get();
