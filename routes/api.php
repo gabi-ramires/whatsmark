@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\CronController;
 use App\Http\Controllers\SetupWhatsController;
+use App\Http\Controllers\EnvioController;
+use Illuminate\Support\Facades\Auth;
 
 use function Ramsey\Uuid\v1;
 
@@ -28,6 +30,7 @@ Route::get('/session/status/{sessionId}', [ApiController::class, 'getStatusSessi
 Route::get('/session/qr/{sessionId}/image', [ApiController::class, 'carregaQrCode']);
 Route::post('/client/sendMessage/{sessionId}', [ApiController::class, 'sendMessage']);
 Route::post('/client/sendMessageAgendado/{sessionId}', [ApiController::class, 'sendMessageAgendado']);
+Route::post('/client/sendCampanha/{sessionId}', [ApiController::class, 'sendCampanha']);
 
 
 
@@ -171,6 +174,58 @@ class ApiController
 
         return response()->json(['status' => true, 'message' => "Envio agendado com sucesso"]);
         
+    }
+
+    public function sendCampanha($sessionId, Request $request)
+    {   
+        $url = $this->uri."client/sendMessage/{$sessionId}";
+
+        $user = Auth::user();
+
+    
+        // Obter os parâmetros do pedido
+        $contatos = $request->request->get('contatos');
+        $msg = $request->request->get('content');
+
+        
+        $contatos = json_decode($contatos);
+
+        $phone = "";
+        foreach ($contatos as $key => $contato) {
+            $phone = $contato->whatsapp;
+
+            // Construir o corpo da solicitação como um objeto JSON
+            $requestData = json_encode(array(
+                'chatId' => $phone.'@c.us',
+                'content' => $msg,
+                "contentType" => "string"
+            ));
+        
+            $headers = array(
+                'Accept: */*',
+                'x-api-key:' . $this->apiKey,
+                'Content-Type: application/json'
+            );
+        
+            $ch = curl_init();
+        
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $requestData); // Passar os dados convertidos para JSON
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+            $response = curl_exec($ch);
+            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
+            curl_close($ch);
+
+        }
+
+
+
+        
+        return $response;
     }
 
 }

@@ -146,12 +146,12 @@ h2 {
   padding-right: 10px;
   color: rgb(107, 3, 3);
 }
-.contatos #modalNovaLista .modal-content {
+.contatos #modalNovaLista .modal-content, .contatos #myModal .modal-content {
   background-color: #dad5d1;
   color: black;
   border: none;
 }
-.contatos #modalNovaLista input {
+.contatos #modalNovaLista input, .contatos #myModal input {
   color: black !important;
 }
 .contatos .submit {
@@ -182,10 +182,12 @@ h2 {
 .nova-campanha select {
   padding: 5px 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid gray;
+  border-radius: 12px;
   outline: none;
-  width: 100px;
+  width: 150px;
+  background-color: #333 !important;
+  color: white;
 }
 .nova-campanha label {
   margin-left: 5px;
@@ -389,4 +391,56 @@ h2 {
 .nova-campanha #calendario input {
   width: -moz-min-content;
   width: min-content;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  padding-bottom: 70px;
+  /* Estilo para a tabela */
+  /* Estilo para as células do cabeçalho */
+  /* Estilo para as células dos dados */
+  /* Estilo para linhas alternadas */
+  /* Estilo para o container principal */
+  /* Estilo para o botão de obter saldo */
+  /* Estilo para a mensagem de saldo */
+  /* Estilo para o cabeçalho do painel */
+}
+.dashboard table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.dashboard th {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.dashboard td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.dashboard tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.dashboard #app {
+  margin-top: 20px;
+}
+.dashboard #app button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dashboard #app p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.dashboard h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }

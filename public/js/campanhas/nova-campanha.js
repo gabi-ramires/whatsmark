@@ -160,20 +160,35 @@ function enviarWhats(lista,id) {
     contatos = JSON.parse(contatos);
     console.log(contatos)
 
-    contatos.forEach(contato => {
-        let nome = contato.nome
-        let phone = contato.whatsapp
+    var dataAtual = new Date();
+    // Obtém o ano, mês e dia atual
+    var ano = dataAtual.getFullYear();
+    var mes = (dataAtual.getMonth() + 1 < 10 ? '0' : '') + (dataAtual.getMonth() + 1);
+    var dia = (dataAtual.getDate() < 10 ? '0' : '') + dataAtual.getDate();
 
-        fetch(`/api/client/sendMessage/a1d0c6e83f027327d8461063f4ac58a6`, {
+    // Obtém as horas e minutos atuais
+    var horas = (dataAtual.getHours() < 10 ? '0' : '') + dataAtual.getHours();
+    var minutos = (dataAtual.getMinutes() < 10 ? '0' : '') + dataAtual.getMinutes();
+
+    // Formata a data e hora como uma string no formato "YYYY-MM-DDTHH:MM"
+    var dataHoraFormatada = ano + '-' + mes + '-' + dia + 'T' + horas + ':' + minutos;
+
+
+    var dados = [texto, id,'imediato',dataHoraFormatada]
+
+        fetch(`/api/client/sendCampanha/a1d0c6e83f027327d8461063f4ac58a6`, {
             method: 'POST',
             headers: {
                 'accept': '*/*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "chatId": phone+"@c.us",
+                "contatos": JSON.stringify(contatos),
                 "contentType": "string",
-                "content": texto
+                "content": texto,
+                "id_lista": dados[1],
+                "tipo_envio": dados[2],
+                "horario_envio": dados[3]
             })
         })
         .then(response => {
@@ -198,6 +213,11 @@ function enviarWhats(lista,id) {
                 // muda para icone de sucesso
                 $("#retorno-envio i").removeClass("bi bi-x-circle")
                 $("#retorno-envio i").addClass("bi bi-check-circle")
+
+                $("#textarea").val("");
+
+
+                logarEnvio(dados)
                 
             } else {
                 // faz aparecer o componente
@@ -219,14 +239,21 @@ function enviarWhats(lista,id) {
             console.error('Ocorreu um erro:', error);
         });
 
-    });
 }
 
+/**
+ * Abrir campo para agendar
+ */
+$("#agendar").click(function () {
+    $("#calendario").css("display","flex")
+})
 
 /**
  * Agendar mensagem de whats
  */
-$("#envio-agendado").click(function(){
+$('#form-agendar').submit(function(event) {
+    // Impedir o envio do formulário padrão
+    event.preventDefault();
     var listaContatos;
     (async () => {
 
@@ -258,6 +285,8 @@ $("#envio-agendado").click(function(){
         var data = $("#data-agendada").val()
         var idSession = await getIdSession();
 
+        var dados = [texto, id,'agendado',data]
+
         fetch(`/api/client/sendMessageAgendado/${idSession}`, {
             method: 'POST',
             headers: {
@@ -269,6 +298,7 @@ $("#envio-agendado").click(function(){
                 "contentType": "string",
                 "content": texto,
                 "lista" : listaContatos,
+                "id_lista": dados[1],
                 "data": data
             })
         })
@@ -294,6 +324,10 @@ $("#envio-agendado").click(function(){
                 // muda para icone de sucesso
                 $("#retorno-envio i").removeClass("bi bi-x-circle")
                 $("#retorno-envio i").addClass("bi bi-check-circle")
+
+                $("#textarea").val("");
+
+                logarEnvio(dados)
                 
             } else {
                 // faz aparecer o componente
@@ -337,4 +371,33 @@ $("#botao-liga-desliga").click(function(){
     }
 
 })
+
+function logarEnvio(data) {
+
+    fetch('/storeEnvios', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "mensagem_enviada": data[0],
+            "titulo" : $("#titulo").val(),
+            "lista_enviada": data[1],
+            "tipo_envio": data[2],
+            "horario_envio" : data[3],
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao enviar os dados');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Envio registrado com sucesso:', data);
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
 

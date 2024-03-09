@@ -24,14 +24,13 @@ if ($user) {
 
 <div class='card'>
     <div>
+        <div>
+            <label>Titulo: </label>
+            <input type='text' id='titulo'>          
+        </div>
+        <br>
 
-        <label>Templates: </label>
-        <select id='templates'>
-            <option > - </option>
-            <!-- adiciona dinamicamente -->
-        </select>
-
-        <label>Contatos: </label>
+        <label>Lista: </label>
         <select id='select'>
             <!-- adiciona dinamicamente -->
         </select>      
@@ -70,9 +69,11 @@ Crie suas campanhas com imagens, emojis, botões e muito mais! 🤩🚀</textare
         <input id='submit' type='submit'>        
     </div>
 
-    <div id='calendario'>
-        <input id='data-agendada' type='datetime-local'>
-        <input id='envio-agendado' type='submit'>
+    <div id='calendario' style="display: none">
+        <form id='form-agendar'>
+            <input id='data-agendada' type='datetime-local' required>
+            <input id='envio-agendado' type='submit'>
+        </form>
     </div>
 
     <br>

@@ -6,6 +6,8 @@ use App\Http\Controllers\VerificationsController;
 use App\Http\Controllers\SetupWhatsController;
 use App\Http\Controllers\ListsController;
 use App\Http\Controllers\CronController;
+use App\Http\Controllers\EnvioController;
+use App\Http\Controllers\ExtratoEnvioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,10 @@ Route::get('/nova-campanha', function () {
     return view('campanhas/nova-campanha');
 });
 
+Route::get('/dashboard', function () {
+    return view('campanhas/dashboard');
+});
+
 Route::get('/meus-planos', function () {
     return view('painel/meus-planos');
 });
@@ -73,7 +79,6 @@ Route::get('/setup', [SetupWhatsController::class, 'setup'])->name('setup');
 Route::get('/getIdSession', [SetupWhatsController::class, 'getIdSession']);
 
 // Lists
-//Route::post('/lists', [ListsController::class, 'store'])->name('lists.store');
 Route::post('/criar', [ListsController::class, 'criar'])->name('lists.criar');
 Route::post('/update', [ListsController::class, 'update'])->name('lists.update');
 Route::post('/getLists', [ListsController::class, 'getLists']);
@@ -81,6 +86,18 @@ Route::delete('/delete', [ListsController::class, 'delete']);
 
 //Cron
 Route::post('/executar-cron', [CronController::class, 'cron']);
+
+//Envios
+Route::post('/storeEnvios', [EnvioController::class, 'storeEnvios']);
+Route::get('/getTodosEnvios', [EnvioController::class, 'getTodosEnvios']);
+
+//ExtratoEnvios
+Route::post('/storeExtratoEnvios', [ExtratoEnvioController::class, 'storeExtratoEnvios']);
+Route::get('/getSaldo', [ExtratoEnvioController::class, 'getSaldo']);
+Route::get('/getLimite', [ExtratoEnvioController::class, 'getLimite']);
+
+
+
 
 
 

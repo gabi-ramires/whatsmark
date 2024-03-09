@@ -27,4 +27,6 @@ if ($user) {
     </div>
 </div>
 
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+
 @endsection

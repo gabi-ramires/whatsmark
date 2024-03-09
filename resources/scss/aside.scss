@@ -1,14 +1,15 @@
 /* Estilos para o menu */
 
     aside {
-        display: flex;
         flex-direction: column;
-        background-color: #EF780D;
+        background-color: hsl(28, 90%, 49%);
         width: 210px;
-        height: 89vh;
+        min-height: 89vh; /* Altura mínima inicial em relação à viewport */
+        height: auto;
         margin: 0;
         padding: 0;
         position: relative;
+
 
         ul {
             display: flex;
@@ -18,14 +19,13 @@
             padding: 0;
             text-align: center;
             text-align: start;
-            padding-left: 10px;
             padding-top: 10px;
 
 
             li {
                 display:block;
                 margin-right: 20px;
-                padding-left: 5px;
+                padding-left: 10px;
                 padding-top: 10px;
                 padding-bottom: 5px;
 
@@ -45,6 +45,7 @@
             position: static;
             left: 100%;
             top: 0;
+            padding-left: 25px;
 
             a {
                 &:hover{
