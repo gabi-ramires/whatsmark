@@ -20,7 +20,7 @@
         <nav>
             <ul>
                 <li><a href="/painel">Inicio</a></li>
-                <li><a href="#">Conta</a></li>
+                <li><a href="conta">Conta</a></li>
                 <li><a href="/logout">Sair</a></li>
             </ul>
         </nav>

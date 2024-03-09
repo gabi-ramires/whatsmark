@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\SetupWhats;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -70,12 +71,36 @@ class UsersController extends Controller
     {
         Auth::logout();
         
-        return redirect('/');
+        return redirect('/login');
     }
 
-    public function geraIdSession($idUser){
+    public function geraIdSession($idUser)
+    {
         $idSession = md5($idUser);
 
         return $idSession;
     }
+
+    public function updatePassword(Request $request)
+    {
+        // Criptografa a senha nova
+        $senhaNova = $request->senhaNova;
+        $senhaNovaCript = bcrypt($senhaNova);
+    
+        // Busca senha atual do banco
+        $user = Auth::user();
+        $senhaAtualDBCript = $user->password;
+    
+        // Verifica se a senha atual informada confere com a do banco
+        if (!Hash::check($request->senhaAtual, $senhaAtualDBCript)) {
+            return response()->json(['success' => false, 'message' => 'Senha atual não confere'], 200);
+        }
+    
+        // Atualiza a senha no banco de dados
+        $user->password = $senhaNovaCript;
+        $user->save();
+    
+        return response()->json(['success' => true, 'message' => 'Senha atualizada com sucesso']);
+    }
+    
 }

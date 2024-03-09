@@ -65,12 +65,18 @@ Route::get('/meus-planos', function () {
     return view('painel/meus-planos');
 });
 
+Route::get('/conta', function () {
+    return view('painel/conta');
+});
+
 
 
 // Users
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/login', [UsersController::class, 'login']);
 Route::match(['get', 'post'], '/logout', [UsersController::class, 'logout']);
+Route::post('/password', [UsersController::class, 'updatePassword']);
+
 
 // Verifications
 Route::post('/verification', [VerificationsController::class, 'verifyIfEmailAlreadyExist']);

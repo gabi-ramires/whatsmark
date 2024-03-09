@@ -19,7 +19,7 @@ if ($user) {
 
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <div class='col index'>
-    <h2>Bem vinda, <?= $nome; ?></h2>
+    <h2>Bem vindo(a), <?= $nome; ?></h2>
     <div class='col'>
         <div id='setup' class='componenteIndex' style='display: none'>
             <div class="textoComponente" >
