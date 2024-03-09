@@ -16,9 +16,9 @@ class CronController
 
         // Verificar se o comando foi executado com sucesso
         if ($output === null) {
-            return response()->json(['status' => true, 'message' => "Comando cron executado com sucesso"]);
+            return array('status' => true, 'message' => "Comando cron executado com sucesso");
         } else {
-            return response()->json(['status' => false, 'message' => "Falha ao executar o comando cron"]);
+            return array('status' => false, 'message' => "Falha ao executar o comando cron");
         }
     }    
 }

@@ -180,7 +180,11 @@ class ApiController
         $comando = 'crontab -l | { cat; echo "'.$minuto.' '.$hora.' '.$dia.' '.$mes.' * php /var/www/html/sendMessageAgendado.php \"'.$sessionId.'\" \"'.$msg.'\" \"'.$contatos.'\" "; } | crontab -';
 
         $cron = new CronController();
-        $cron->cron($comando);
+        $res = $cron->cron($comando);
+
+        if(!$res['status']) {
+            return response()->json(['status' => false, 'message' => "Erro ao agendar o envio."]);
+        }
 
         // Preparando para logar
         $requestExtrato = new Request([
@@ -254,6 +258,11 @@ class ApiController
         
             curl_close($ch);
 
+        }
+        
+        // Não foi realizado o envio
+        if(!$response->success) {
+            return $response;
         }
 
         // Preparando para logar
