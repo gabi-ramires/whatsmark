@@ -43,6 +43,7 @@ function getLists() {
 
             corpoListas.innerHTML += `
             <tr id='${id}'>
+                <td>${id}</td>
                 <td>${nome}</td>
                 <td>Abrir planilha</td>
                 <td>

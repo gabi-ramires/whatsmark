@@ -1,0 +1,18 @@
+/getClassInfo   (ve o status da mensagem recebida se foi visu)
+
+a1d0c6e83f027327d8461063f4ac58a6
+
+idMessage: 3EB03BFFAC86F6F36D7808
+
+555180187026
+
+O campo ack na resposta da API indica o status de confirmação de entrega da mensagem. Aqui estão os possíveis valores e seus significados comuns:
+
+0: A mensagem foi enviada, mas ainda não foi entregue ao destinatário.
+1: A mensagem foi entregue ao servidor do destinatário.
+2: A mensagem foi entregue ao dispositivo do destinatário, mas ainda não foi exibida ao usuário (geralmente significa que a mensagem foi recebida no dispositivo, mas o aplicativo do destinatário não foi aberto ou não está em primeiro plano).
+3: A mensagem foi entregue ao dispositivo do destinatário e foi visualizada pelo usuário.
+
+
+
+/getContacts (pega todos os contatos salvos de whats)

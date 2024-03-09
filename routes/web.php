@@ -8,6 +8,7 @@ use App\Http\Controllers\ListsController;
 use App\Http\Controllers\CronController;
 use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\ExtratoEnvioController;
+use App\Http\Controllers\PlanoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,9 @@ Route::get('/getTodosEnvios', [EnvioController::class, 'getTodosEnvios']);
 Route::post('/storeExtratoEnvios', [ExtratoEnvioController::class, 'storeExtratoEnvios']);
 Route::get('/getSaldo', [ExtratoEnvioController::class, 'getSaldo']);
 Route::get('/getLimite', [ExtratoEnvioController::class, 'getLimite']);
+
+//Plano
+Route::get('/verificaSeTemPlano/{sessionId}', [PlanoController::class, 'verificaSeTemPlano']);
 
 
 

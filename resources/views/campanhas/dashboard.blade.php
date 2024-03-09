@@ -2,14 +2,25 @@
     <script>window.location.href = "{{ url('/') }}";</script>
 @endif
 <?php
-// Verifica se o usuário está autenticado
-$user = Auth::user();
-if ($user) {
-    $nome = $user->name;
-} else {
-    header('Location: /');
-    exit();
-}
+    // Verifica se o usuário está autenticado
+    $user = Auth::user();
+    if ($user) {
+        $nome = $user->name;
+    } else {
+        header('Location: /');
+        exit();
+    }
+
+    // Verifica se usuário tem plano contratado
+    use Illuminate\Support\Facades\DB;
+    $temContrato = DB::table('contratos')
+    ->where('user_id', $user->id)
+    ->exists();
+
+    if(!$temContrato) {
+        header('Location: /painel');
+        exit();
+    }
 ?>
 
 @extends('painel/nav-painel')
@@ -24,7 +35,6 @@ if ($user) {
 
     @verbatim
     <div id="app">
-        
 
         <p >Saldo: {{ saldo }}/{{ limite }}</p>
 
@@ -44,7 +54,7 @@ if ($user) {
                 <td>{{ envio.titulo }}</td>
                 <td>{{ envio.mensagem_enviada }}</td>
                 <td>{{ envio.lista_enviada }}</td>
-                <td>{{ envio.created_at }}</td>
+                <td>{{ horario_envio }}</td>
             </tr>
             </tbody>
         </table>
@@ -53,13 +63,15 @@ if ($user) {
     @endverbatim
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 <script>
 var app = new Vue({
     el: '#app',
     data: {
         saldo: '',
         limite: '',
-        envios: []
+        envios: [],
+        horario_envio: ''
     },
     methods: {
         getSaldo: async function () {
@@ -111,7 +123,15 @@ var app = new Vue({
 
                 this.envios = data
 
-                console.log(this.envios)
+                this.envios.forEach(envio => {
+                    let partes = envio.horario_envio.split(" ")[0].split("-");
+                    let novaDataHora = partes[2] + "/" + partes[1] + "/" + partes[0] + " " + envio.horario_envio.split(" ")[1];
+      
+                    this.horario_envio = novaDataHora
+
+                });
+
+
             } catch (error) {
                 this.envios = error.message;
             }
@@ -130,8 +150,6 @@ var app = new Vue({
 </script>
 
 <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/campanhas/dashboard.js') }}"></script>
-
 
 
 

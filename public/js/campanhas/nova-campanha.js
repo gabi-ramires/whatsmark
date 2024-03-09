@@ -16,8 +16,6 @@ async function getIdSession() {
 }
 
 
-
-
 /**
  * Abre/fecha emojis
  */
@@ -217,7 +215,6 @@ function enviarWhats(lista,id) {
 
                 $("#textarea").val("");
 
-
                 //logarEnvio(dados)
                 
             } else {
@@ -229,7 +226,7 @@ function enviarWhats(lista,id) {
                 $("#retorno-envio").addClass("retorno-envio-red");
 
                 // mensagem
-                $("#msg").text("Erro ao atualizar envio.")
+                $("#msg").text("Erro ao realizar envio.")
 
                 // muda para icone de sucesso
                 $("#retorno-envio i").removeClass("bi bi-check-circle")
@@ -240,6 +237,9 @@ function enviarWhats(lista,id) {
             console.error('Ocorreu um erro:', error);
         });
 
+        setTimeout(function() {
+            $("#retorno-envio").css("visibility", "hidden");
+        }, 3000);
 }
 
 /**
@@ -350,6 +350,10 @@ $('#form-agendar').submit(function(event) {
         .catch(error => {
             console.error('Ocorreu um erro:', error);
         });
+
+        setTimeout(function() {
+            $("#retorno-envio").css("visibility", "hidden");
+        }, 3000);
 
     })();
 

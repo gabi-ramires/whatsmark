@@ -2,14 +2,25 @@
     <script>window.location.href = "{{ url('/') }}";</script>
 @endif
 <?php
-// Verifica se o usuário está autenticado
-$user = Auth::user();
-if ($user) {
-    $nome = $user->name;
-} else {
-    header('Location: /');
-    exit();
-}
+    // Verifica se o usuário está autenticado
+    $user = Auth::user();
+    if ($user) {
+        $nome = $user->name;
+    } else {
+        header('Location: /');
+        exit();
+    }
+
+    // Verifica se usuário tem plano contratado
+    use Illuminate\Support\Facades\DB;
+    $temContrato = DB::table('contratos')
+    ->where('user_id', $user->id)
+    ->exists();
+
+    if(!$temContrato) {
+        header('Location: /painel');
+        exit();
+    }
 ?>
 
 @extends('painel/nav-painel')
@@ -102,7 +113,6 @@ Crie suas campanhas com imagens, emojis, botões e muito mais! 🤩🚀</textare
     </div>
     <div id='botao-liga-desliga' class="button home"></div>
 </div>
-
 
 
 <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>

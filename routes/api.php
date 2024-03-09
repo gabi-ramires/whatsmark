@@ -169,6 +169,14 @@ class ApiController
 
         $contatos = json_decode($contatos);
 
+        //verifica se tem saldo suficiente
+        $temSaldo = $this->verificaSeTemSaldo(count(json_decode($contatos)), $sessionId);
+
+        if (!$temSaldo){
+            $response = array('success' => false, 'message' => 'Não possui saldo suficiente');
+            return json_encode($response);
+        }
+
         $comando = 'crontab -l | { cat; echo "'.$minuto.' '.$hora.' '.$dia.' '.$mes.' * php /var/www/html/sendMessageAgendado.php \"'.$sessionId.'\" \"'.$msg.'\" \"'.$contatos.'\" "; } | crontab -';
 
         $cron = new CronController();
@@ -207,6 +215,14 @@ class ApiController
         $msg = $request->request->get('content');
 
         $contatos = json_decode($contatos);
+
+        //verifica se tem saldo suficiente
+        $temSaldo = $this->verificaSeTemSaldo(count($contatos), $sessionId);
+
+        if (!$temSaldo){
+            $response = array('success' => false, 'message' => 'Não possui saldo suficiente');
+            return json_encode($response);
+        }
 
         $phone = "";
         foreach ($contatos as $key => $contato) {
@@ -257,4 +273,25 @@ class ApiController
         return $response;
     }
 
+    public function verificaSeTemSaldo($envios, $sessionId)
+    {   
+        $userId = $this->getUserIdBySessionId($sessionId);
+
+        $saldo = DB::table('extrato_envios')
+        ->where('user_id', $userId)
+        ->orderBy('created_at', 'desc')
+        ->value('saldo');
+
+        return ($saldo >= $envios);
+
+    }
+
+    public function getUserIdBySessionId($sessionId)
+    {
+        $userId = DB::table('setupWhats')
+        ->where('IdSession', $sessionId)
+        ->value('idUser');
+
+        return $userId;
+    }
 }
