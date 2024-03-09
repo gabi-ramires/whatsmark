@@ -22,9 +22,12 @@ class EnvioController extends Controller
      */
     public function storeEnvios(Request $request)
     { 
-        // Obtém o ID do usuário autenticado
-        $userId = Auth::id();
+        $sessionId = $request->input('sessionId');
 
+        //Buscando user_id através do sessionId
+        $userId = DB::table('setupWhats')
+        ->where('IdSession', $sessionId)
+        ->value('idUser');
 
         //Envios
         $contacts = DB::table('lists')

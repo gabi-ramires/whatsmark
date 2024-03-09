@@ -188,7 +188,8 @@ function enviarWhats(lista,id) {
                 "content": texto,
                 "id_lista": dados[1],
                 "tipo_envio": dados[2],
-                "horario_envio": dados[3]
+                "horario_envio": dados[3],
+                "titulo": $("#titulo").val()
             })
         })
         .then(response => {
@@ -217,7 +218,7 @@ function enviarWhats(lista,id) {
                 $("#textarea").val("");
 
 
-                logarEnvio(dados)
+                //logarEnvio(dados)
                 
             } else {
                 // faz aparecer o componente
@@ -299,7 +300,8 @@ $('#form-agendar').submit(function(event) {
                 "content": texto,
                 "lista" : listaContatos,
                 "id_lista": dados[1],
-                "data": data
+                "data": data,
+                "titulo": $("#titulo").val()
             })
         })
         .then(response => {
@@ -327,7 +329,7 @@ $('#form-agendar').submit(function(event) {
 
                 $("#textarea").val("");
 
-                logarEnvio(dados)
+                //logarEnvio(dados)
                 
             } else {
                 // faz aparecer o componente

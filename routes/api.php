@@ -155,22 +155,38 @@ class ApiController
 
     public function sendMessageAgendado($sessionId, Request $request)
     { 
-        $cron = new CronController();
 
         $msg = $request->content;
         $contatos = $request->lista;
         $data = $request->data;
+        $titulo = $request->titulo;
+        $lista_enviada = $request->id_lista;
+        $tipo_envio = 'agendado';
+        $horario_envio = $request->data;
 
         // Extrai a hora e os minutos da string
         list($ano, $mes, $dia, $hora, $minuto) = sscanf($data, "%d-%d-%dT%d:%d");
 
         $contatos = json_decode($contatos);
 
-        //$comando = 'crontab -l | { cat; echo "43 16 * * * /var/www/html/sendMessageAgendado.sh \"'.$sessionId.'\" \"'.$msg.'\" "; } | crontab -';
-
         $comando = 'crontab -l | { cat; echo "'.$minuto.' '.$hora.' '.$dia.' '.$mes.' * php /var/www/html/sendMessageAgendado.php \"'.$sessionId.'\" \"'.$msg.'\" \"'.$contatos.'\" "; } | crontab -';
 
-        $res = $cron->cron($comando);
+        $cron = new CronController();
+        $cron->cron($comando);
+
+        // Preparando para logar
+        $requestExtrato = new Request([
+            'mensagem_enviada' => $msg,
+            'titulo' => $titulo,
+            'lista_enviada' => $lista_enviada,
+            'tipo_envio' => $tipo_envio,
+            'horario_envio'=> $horario_envio,
+            'sessionId' => $sessionId
+        ]);
+
+        // Logando 'envios' e 'extrato-envios'
+        $log = new EnvioController();
+        $log->storeEnvios($requestExtrato);
 
         return response()->json(['status' => true, 'message' => "Envio agendado com sucesso"]);
         
@@ -180,14 +196,16 @@ class ApiController
     {   
         $url = $this->uri."client/sendMessage/{$sessionId}";
 
-        $user = Auth::user();
-
+        $mensagem_enviada = $request->get('content');
+        $titulo = $request->get('titulo');
+        $lista_enviada = $request->input('id_lista');
+        $tipo_envio = $request->input('tipo_envio');
+        $horario_envio = $request->input('horario_envio');
     
         // Obter os parâmetros do pedido
         $contatos = $request->request->get('contatos');
         $msg = $request->request->get('content');
 
-        
         $contatos = json_decode($contatos);
 
         $phone = "";
@@ -222,9 +240,20 @@ class ApiController
 
         }
 
+        // Preparando para logar
+        $requestExtrato = new Request([
+            'mensagem_enviada' => $mensagem_enviada,
+            'titulo' => $titulo,
+            'lista_enviada' => $lista_enviada,
+            'tipo_envio' => $tipo_envio,
+            'horario_envio'=> $horario_envio,
+            'sessionId' => $sessionId
+        ]);
 
+        // Logando 'envios' e 'extrato-envios'
+        $log = new EnvioController();
+        $log->storeEnvios($requestExtrato);
 
-        
         return $response;
     }
 
