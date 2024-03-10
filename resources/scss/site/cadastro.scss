@@ -146,7 +146,18 @@
         }
     }
 
+    span {
+        
+        &:hover{
+            color: white;
+        }
 
+        a {
+            &:hover {
+                filter: brightness(1.4);
+            }
+        }
+    }
 
 
 }

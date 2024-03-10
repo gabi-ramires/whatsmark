@@ -33,6 +33,23 @@ $('#nome, #email, #senha, #repete-senha').blur(function() {
     }
 });
 
+
+// Função para obter o valor de um parâmetro na URL por nome
+function obterParametroUrl(nome) {
+    var queryString = window.location.search.substring(1);
+    var parametros = queryString.split("&");
+    for (var i = 0; i < parametros.length; i++) {
+        var parametro = parametros[i].split("=");
+        if (parametro[0] === nome) {
+            return parametro[1];
+        }
+    }
+    return null;
+}
+var veioDoCarrinho = obterParametroUrl('produto');
+
+
+
 /***********************************************************************
  *                          CADASTRO
  *   Descrição: Funções para realizar o cadastro
@@ -74,10 +91,18 @@ $('#form-cadastro').submit(function(event) {
             $("#retorno-cadastro i").removeClass("bi bi-x-circle")
             $("#retorno-cadastro i").addClass("bi bi-check-circle")
             
-            // Redireciona para o painel
-            setTimeout(function() {
-                window.location.href = '/painel';
-            }, 1000);
+            if(veioDoCarrinho) {
+                // Redireciona para o carrinho
+                setTimeout(function() {
+                    window.location.href = '/carrinho?produto='+veioDoCarrinho+'';
+                }, 1000);
+            } else {
+                // Redireciona para o painel
+                setTimeout(function() {
+                    window.location.href = '/painel';
+                }, 1000);
+            }
+
         },
         error: function(xhr, status, error) {
             console.error('There was a problem with the ajax operation:', error);
@@ -234,5 +259,15 @@ $('#repete-senha').on('input',function(){
         $(".bi-lock-fill").removeClass("sucess-icon")
         $(".bi-lock-fill").addClass("error-icon")
 
+    }
+})
+
+//Clicou em login, verifica se veio do carrinho
+$("#login").click(function() {
+    
+    if(veioDoCarrinho) {
+        window.location.href = '/login?produto='+veioDoCarrinho+'';
+    } else {
+        window.location.href = '/login';
     }
 })

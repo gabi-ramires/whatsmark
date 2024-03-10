@@ -65,10 +65,10 @@
   left: 10px; /* Posição do ícone */
   top: 58%; /* Alinhamento vertical */
 }
-.tela-login span {
+.tela-login a {
   color: white;
 }
-.tela-login span:hover {
+.tela-login a:hover {
   color: rgb(47, 46, 46);
 }
 .tela-login .retorno-registro-green {

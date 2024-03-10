@@ -12,6 +12,7 @@
             <div class=login>
                 <form id='form-cadastro'>
                     <h2>CADASTRE-SE</h2>
+                    <span>ou realize o <strong><a id='login' href='#' style='color: #EF780D;'>Login</a></strong></span>
                     <div class="input-container">
                         <input id="nome" type="text" placeholder="Nome" class="input-with-icon" required>
                         <i class="bi bi-emoji-smile input-icon"></i>

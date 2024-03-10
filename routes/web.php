@@ -9,6 +9,7 @@ use App\Http\Controllers\CronController;
 use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\ExtratoEnvioController;
 use App\Http\Controllers\PlanoController;
+use App\Http\Controllers\ContratarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,10 @@ Route::get('/login', function () {
 
 Route::get('/cadastro', function () {
     return view('site/cadastro');
+});
+
+Route::get('/carrinho', function () {
+    return view('site/carrinho');
 });
 
 
@@ -105,6 +110,11 @@ Route::get('/getLimite', [ExtratoEnvioController::class, 'getLimite']);
 
 //Plano
 Route::get('/verificaSeTemPlano/{sessionId}', [PlanoController::class, 'verificaSeTemPlano']);
+
+//Contratar
+Route::post('/pedido', [ContratarController::class, 'pedido']);
+
+
 
 
 

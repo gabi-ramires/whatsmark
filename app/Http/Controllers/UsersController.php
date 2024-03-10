@@ -45,7 +45,7 @@ class UsersController extends Controller
         Auth::login($user);
 
         // Retorna uma resposta adequada
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return response()->json(['success' => true, 'message' => 'User registered successfully'], 201);
     }
 
 
@@ -60,7 +60,7 @@ class UsersController extends Controller
         // Tentativa de autenticação do usuário
         if (Auth::attempt($credentials)) {
             // Autenticação bem-sucedida
-            return response()->json(['message' => 'Login successful', 'redirect' => '/painel'], 200);
+            return response()->json(['success' => true, 'message' => 'Login successful'], 200);
         } else {
             // Autenticação falhou
             return response()->json(['message' => 'Invalid credentials'], 401);

@@ -1,3 +1,13 @@
+<?php
+
+    $userId = Auth::id();
+    $taLogado = false;
+    if($userId) {
+        $taLogado = true;
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -23,8 +33,12 @@
             <ul>
                 <li><a href="/">Página Inicial</a></li>
                 <li><a href="/sobre">Sobre</a></li>
+                <?php if(!$taLogado): ?>                
                 <li><a href="/cadastro">Cadastro</a></li>
                 <li><a href="/login">Login</a></li>
+                <?php else: ?>
+                <li><a href="/painel">Painel&nbsp; <i class="bi bi-box-arrow-right"></i></a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

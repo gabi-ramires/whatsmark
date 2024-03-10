@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
         '/criar',
         '/executar-cron',
         '/storeEnvios',
-        '/getSaldo'
+        '/getSaldo',
+        '/pedido'
     ];
 }

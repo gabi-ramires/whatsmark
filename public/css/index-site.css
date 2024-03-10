@@ -1,0 +1,77 @@
+@charset "UTF-8";
+.index-site {
+  display: grid !important;
+  flex-direction: column;
+  justify-content: center;
+}
+.index-site .slogan {
+  display: flex;
+  flex-direction: column;
+  color: rgba(220, 119, 19, 0.8274509804);
+  height: -moz-max-content;
+  height: max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: larger;
+  border-radius: 8px;
+  padding: 20px;
+  justify-self: center;
+  align-self: center;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+.index-site .slogan span {
+  color: #f7800a;
+}
+.index-site .produtos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px; /* Espaço entre os cards */
+  padding: 20px;
+}
+.index-site .card {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 230px;
+  height: -moz-max-content;
+  height: max-content;
+  background-color: rgba(51, 51, 51, 0.8274509804);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.index-site .card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.index-site .card p {
+  font-size: 15px;
+  margin-top: 6px;
+  color: white;
+  text-align: start;
+}
+.index-site .preco {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
+}
+.index-site .preco span {
+  font-size: larger;
+  text-align: center;
+}
+.index-site .contratar {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.index-site .contratar span {
+  text-align: center;
+}
+.index-site button {
+  margin: 0 !important;
+}
+.index-site span:hover {
+  color: white;
+}

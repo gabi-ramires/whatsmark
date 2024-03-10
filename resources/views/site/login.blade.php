@@ -1,6 +1,18 @@
 @extends('site/navsite')
 
 @section('conteudo')
+
+<?php
+$userId = Auth::id();
+
+if($userId) {
+    ob_clean();
+    header('Location: /painel');
+    exit();
+}
+
+?>
+
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 <div class="container tela-login">
     <div class='row'>

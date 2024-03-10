@@ -1,0 +1,128 @@
+.carrinho {
+
+    .dados-pessoais {
+       text-align: start;
+       margin-top: 20px;
+       display: flex;
+       flex-direction: column;
+
+       span {
+        margin-top: 10px !important;
+        font-size: large;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+       input {
+            margin: initial;
+            padding: initial;
+            width: 150px;
+            padding-left: initial;
+            padding-bottom: initial;
+            padding: 5px 10px 5px 10px;
+            border: none;
+            border-bottom: 1px solid gray;
+            background-color: transparent;
+            border-radius: 0;
+            
+
+        }
+    
+    }
+    
+    h4{
+        color: #EF780D;
+        margin-top: 20px !important;
+    }
+
+    h2{
+        font-size:x-large !important;
+    }
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 300px;
+    height: max-content;
+    background-color: #333333d3;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Remove as setas padrão do campo de entrada do tipo número */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+
+/* Estilizando os input radio*/
+input[type="radio"] {
+    display: none;
+}
+  
+label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    display: flex;
+}
+
+form {
+    margin-top: 10px;
+    display: flex !important;
+    align-items: center;
+    flex-direction: row !important;
+    justify-content: center;
+}
+
+.em-breve {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 14px;
+    text-decoration: line-through; /* Adiciona o risco */
+}
+
+.valor-total {
+    text-align: center;
+}
+
+button {
+    margin-top: 5px;
+}
+
+#pagamento-pix {
+    img {
+        width: 100%;
+    }
+}
+
+  

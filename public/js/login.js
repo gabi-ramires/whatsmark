@@ -58,7 +58,7 @@ $('#form-login').submit(function(event) {
         data: formData,
         success: function(data) {
             console.log(data);
-            if(data.redirect) {
+            if(data.success) {
                 // faz aparecer o componente
                 $("#retorno-cadastro").css("visibility", "visible");
 
@@ -73,10 +73,17 @@ $('#form-login').submit(function(event) {
                 $("#retorno-cadastro i").removeClass("bi bi-x-circle")
                 $("#retorno-cadastro i").addClass("bi bi-check-circle")
                 
-                // Redireciona para o painel
-                setTimeout(function() {
-                    window.location.href = data.redirect;
-                }, 1000);
+                if(veioDoCarrinho) {
+                    // Redireciona para o carrinho
+                    setTimeout(function() {
+                        window.location.href = '/carrinho?produto='+veioDoCarrinho+'';
+                    }, 1000);
+                } else {
+                    // Redireciona para o painel
+                    setTimeout(function() {
+                        window.location.href = '/painel';
+                    }, 1000);
+                }
 
                 // Criando cookie
                 document.cookie = "usuarioLogado=true; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
@@ -101,5 +108,19 @@ $('#form-login').submit(function(event) {
         }
     });
 });
+
+// Função para obter o valor de um parâmetro na URL por nome
+function obterParametroUrl(nome) {
+    var queryString = window.location.search.substring(1);
+    var parametros = queryString.split("&");
+    for (var i = 0; i < parametros.length; i++) {
+        var parametro = parametros[i].split("=");
+        if (parametro[0] === nome) {
+            return parametro[1];
+        }
+    }
+    return null;
+}
+var veioDoCarrinho = obterParametroUrl('produto');
 
 
