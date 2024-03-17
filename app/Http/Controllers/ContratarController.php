@@ -40,13 +40,13 @@ class ContratarController extends Controller
 
 
         if(isset($response->error)){
-            return array("success" => false, "message" => "Erro ao realizar o pedido");
+            return array("success" => false, "message" => "Erro ao realizar o pedido", "erro" => $response->error);
         }
 
         $qr_code_64 = $response->point_of_interaction->transaction_data->qr_code_base64;
         $dataHora = new \DateTime($response->date_of_expiration);
-
         $dataHoraFormatada = $dataHora->format('d/m/Y H:i');
+        
         return array(
             "success" => true,
             "message" => "Pedido realizado com sucesso!",
